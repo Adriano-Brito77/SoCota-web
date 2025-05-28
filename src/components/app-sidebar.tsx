@@ -1,0 +1,67 @@
+import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+
+// Menu items.
+const items = [
+  {
+    title: "Quotação",
+    url: "/quotation",
+    icon: Home,
+  },
+  {
+    title: "Pedidos",
+    url: "#",
+    icon: Inbox,
+  },
+  {
+    title: "Produtos",
+    url: "/products",
+    icon: Calendar,
+  },
+  {
+    title: "Fornecedores",
+    url: "#",
+    icon: Search,
+  },
+  {
+    title: "Empresa",
+    url: "#",
+    icon: Settings,
+  },
+];
+
+export function AppSidebar() {
+  return (
+    <Sidebar className="w-16rem">
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Menu</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {items.map((item) => (
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  );
+}
