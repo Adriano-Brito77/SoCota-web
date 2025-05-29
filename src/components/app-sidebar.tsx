@@ -30,7 +30,7 @@ const items = [
   },
   {
     title: "Fornecedores",
-    url: "#",
+    url: "/suppliers",
     icon: Search,
   },
   {

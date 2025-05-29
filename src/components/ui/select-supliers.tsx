@@ -21,31 +21,27 @@ export interface Suppliers {
 }
 
 export interface SupliersPagination {
-  data: Suppliers[];
-  totalCount: number;
-  totalPages: number;
-  currentPage: number;
+  data?: Suppliers[];
 }
 
 export function SelectDemo({
   data,
-  totalCount,
-  totalPages,
-  currentPage,
   Supplier,
-}: SupliersPagination & { Supplier: any }) {
+}: SupliersPagination & { Supplier?: any }) {
   return (
     <Select onValueChange={Supplier}>
-      <SelectTrigger className="w-[200px] ">
+      <SelectTrigger className="w-full">
         <SelectValue placeholder="Selecione o fornecedor" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {data.map((data) => (
-            <SelectItem key={data.id} value={data.id}>
-              {data.name}
-            </SelectItem>
-          ))}
+          {data && data.length > 0
+            ? data.map((data) => (
+                <SelectItem key={data.id} value={data.id}>
+                  {data.name}
+                </SelectItem>
+              ))
+            : ""}
         </SelectGroup>
       </SelectContent>
     </Select>

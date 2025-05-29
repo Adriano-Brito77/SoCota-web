@@ -1,12 +1,12 @@
 import LayoutPage from "@/components/ui/layout";
 
-export default function ProductsLayout({
+export default function SuppliersLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-full w-full ">
+    <div className="w-full">
       <LayoutPage>{children}</LayoutPage>
     </div>
   );

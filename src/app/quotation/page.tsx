@@ -23,6 +23,7 @@ import {
   getCoreRowModel,
   flexRender,
 } from "@tanstack/react-table";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export interface Quotation {
   id: string;
@@ -155,36 +156,63 @@ export default function Quotation() {
               ))}
             </TableHeader>
             <TableBody>
-              {quotations.data.map((data: any) => (
-                <TableRow className="font-medium " key={data.id}>
-                  <TableCell className="font-medium 4">
-                    {data.products.productName}
-                  </TableCell>
-                  <TableCell className="font-medium ">
-                    {data.suppliers.name}
-                  </TableCell>
-                  <TableCell>
-                    {data.dollar_rate.toLocaleString("pt-Br", {
-                      style: "currency",
-                      currency: "USD",
-                    })}
-                  </TableCell>
-                  <TableCell>
-                    {format(new Date(data.payment_date), "dd/MM/yyyy")}
-                  </TableCell>
-                  <TableCell>
-                    {data.price.toLocaleString("pt-BR", {
-                      style: "currency",
-                      currency: "BRL",
-                    })}
-                  </TableCell>
-                  <TableCell>{data.profit_margins.profit_amount}</TableCell>
-                  <TableCell>{data.companies.finance_rate}</TableCell>
-                  <TableCell>
-                    {data.suppliers.finance_rate_before_date}
-                  </TableCell>
-                </TableRow>
-              ))}
+              {isPending ? (
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      {Array.from({ length: columns.length }).map((_, i) => (
+                        <TableHead key={i}>
+                          <Skeleton className="h-4 w-24" />
+                        </TableHead>
+                      ))}
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {Array.from({ length: 5 }).map((_, rowIndex) => (
+                      <TableRow key={rowIndex}>
+                        {Array.from({ length: columns.length }).map(
+                          (_, cellIndex) => (
+                            <TableCell key={cellIndex}>
+                              <Skeleton className="h-4 w-full" />
+                            </TableCell>
+                          )
+                        )}
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              ) : (
+                quotations.data.map((data: any) => (
+                  <TableRow className="font-medium " key={data.id}>
+                    <TableCell className="font-medium 4">
+                      {data.products.productName}
+                    </TableCell>
+                    <TableCell className="font-medium ">
+                      {data.suppliers.name}
+                    </TableCell>
+                    <TableCell>
+                      {data.dollar_rate.toLocaleString("pt-Br", {
+                        style: "currency",
+                        currency: "USD",
+                      })}
+                    </TableCell>
+                    <TableCell>
+                      {format(new Date(data.payment_date), "dd/MM/yyyy")}
+                    </TableCell>
+                    <TableCell>
+                      {data.price.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </TableCell>
+                    <TableCell>{data.profit_margins.profit_amount}</TableCell>
+                    <TableCell>{data.companies.finance_rate}</TableCell>
+                    <TableCell>
+                      {data.suppliers.finance_rate_before_date}
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
             </TableBody>
           </Table>
         ) : (

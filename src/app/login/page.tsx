@@ -45,7 +45,9 @@ export default function Login(data: LoginFormData) {
 
   const authUser = async (data: any) => {
     // Armazenando o token no cookie com um tempo de expiração
-    await setCookie(null, "access_token", data.token);
+    setCookie(null, "access_token", data.token, {
+      maxAge: 30 * 24 * 60 * 60,
+    });
   };
 
   const onSubmit = (data: LoginFormData) => {

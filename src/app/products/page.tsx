@@ -17,7 +17,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { format, previousDay } from "date-fns";
+import { format } from "date-fns";
 import {
   ChevronLeft,
   ChevronRight,
@@ -26,6 +26,8 @@ import {
 } from "lucide-react";
 import { SelectDemo } from "@/components/ui/select-supliers";
 import { SupliersPagination } from "@/components/ui/select-supliers";
+import { DialogCloseButton } from "@/components/ui/dialog-import-products";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export interface Products {
   id: string;
@@ -99,7 +101,10 @@ const ProductsPage = () => {
 
   const switchSupliers = (data: any) => {
     setSupplier(data);
-    console.log(supplier);
+    setPages((prev: PagesState) => ({
+      ...prev,
+      currentPage: 1,
+    }));
   };
 
   const nextPage = () => {
@@ -138,24 +143,47 @@ const ProductsPage = () => {
   });
   return (
     <main className="p-8 font-bold text-4xl h-full">
-      <div className=" flex justify-between">
+      <div className="flex justify-between">
         <h1>Produtos</h1>
 
-        <button className="bg-blue-500 w-[200px] hover:bg-blue-700 rounded-sm text-sm text-amber-50">
-          <span className="p-8">Importar Produtos</span>
-        </button>
+        <DialogCloseButton {...suppliers.data} getProducts={refetch} />
       </div>
 
       <div className="flex justify-end align-middle pt-6">
-        <div className="flex justify-center align-middle w-auto">
+        <div className="flex justify-center align-middle w-[200px]">
           {!suppliers.isLoading && suppliers.data && (
             <SelectDemo {...suppliers.data} Supplier={switchSupliers} />
           )}
         </div>
       </div>
 
-      <div className="mt-8 p-4 h-auto overflow-y-auto border-2 rounded-lg bg-white">
-        {products && products.data ? (
+      <div className="mt-8 p-4 h-auto overflow-y-auto border-2 rounded-lg  bg-white">
+        {isPending ? (
+          <Table>
+            <TableHeader>
+              <TableRow>
+                {Array.from({ length: columns.length }).map((_, i) => (
+                  <TableHead key={i}>
+                    <Skeleton className="h-4 w-24" />
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {Array.from({ length: 5 }).map((_, rowIndex) => (
+                <TableRow key={rowIndex}>
+                  {Array.from({ length: columns.length }).map(
+                    (_, cellIndex) => (
+                      <TableCell key={cellIndex}>
+                        <Skeleton className="h-4 w-full" />
+                      </TableCell>
+                    )
+                  )}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        ) : products && products.data.length > 0 ? (
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
@@ -175,14 +203,14 @@ const ProductsPage = () => {
             </TableHeader>
             <TableBody>
               {products.data.map((data) => (
-                <TableRow className="font-medium " key={data.id}>
-                  <TableCell className="font-medium 4">
+                <TableRow className="font-medium" key={data.id}>
+                  <TableCell className="font-medium">
                     {data.priceCatalogName}
                   </TableCell>
-                  <TableCell className="font-medium ">
+                  <TableCell className="font-medium">
                     {data.productName}
                   </TableCell>
-                  <TableCell className="font-medium ">
+                  <TableCell className="font-medium">
                     {data.suppliersName}
                   </TableCell>
                   <TableCell>
@@ -205,8 +233,8 @@ const ProductsPage = () => {
             </TableBody>
           </Table>
         ) : (
-          <div className="flex mt-20 justify-center items-center h-[70%] w-full text-gray-500">
-            <span>Nenhuma cotação encontrada.</span>
+          <div className="flex p-12 justify-center items-center h-[70%] w-full text-gray-500">
+            <span>Nenhum produto encontrado.</span>
           </div>
         )}
       </div>
