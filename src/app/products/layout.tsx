@@ -6,8 +6,8 @@ export default function ProductsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <LayoutPage>
-      <main>{children}</main>
-    </LayoutPage>
+    <div className="h-screen w-full ">
+      <LayoutPage>{children}</LayoutPage>
+    </div>
   );
 }

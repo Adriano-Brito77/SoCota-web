@@ -141,8 +141,6 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
-
     font-family: "Poppins", "Roboto", sans-serif;
   }
 }

@@ -23,7 +23,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </Head>
-      <body className="w-full h-screen bg-zinc-100">
+      <body className="w-full h-full bg-zinc-100">
         <ReactQueryProvider>
           <SidebarProvider>{children}</SidebarProvider>
         </ReactQueryProvider>

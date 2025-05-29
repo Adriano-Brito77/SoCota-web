@@ -2,9 +2,7 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -12,7 +10,7 @@ import {
 import { format } from "date-fns";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/utils/api";
-import { ApiError } from "next/dist/server/api-utils";
+import { columns } from "@/app/quotation/_components/table-column";
 import {
   ChevronLeft,
   ChevronRight,
@@ -20,6 +18,11 @@ import {
   ChevronsRight,
 } from "lucide-react";
 import { useState } from "react";
+import {
+  useReactTable,
+  getCoreRowModel,
+  flexRender,
+} from "@tanstack/react-table";
 
 export interface Quotation {
   id: string;
@@ -48,19 +51,19 @@ export interface QuotationProps {
   currentPage: number;
 }
 
-type PagesState = {
+export interface PagesState {
   totalCount: number;
   totalPages: number;
   currentPage: number;
   pageSize: number;
-};
+}
 
 export default function Quotation() {
   const [pages, setPages] = useState<PagesState>({
     totalCount: 0,
-    totalPages: 0,
+    totalPages: 1,
     currentPage: 1,
-    pageSize: 10,
+    pageSize: 5,
   });
 
   const {
@@ -88,12 +91,17 @@ export default function Quotation() {
     },
   });
 
+  const table = useReactTable({
+    data: quotations?.data ?? [],
+    columns: columns,
+    getCoreRowModel: getCoreRowModel(),
+  });
+
   const nextPage = () => {
     setPages((prev: PagesState) => ({
       ...prev,
       currentPage: Math.min(prev.currentPage + 1, pages.totalPages),
     }));
-    refetch();
   };
 
   const decrementPage = () => {
@@ -103,39 +111,58 @@ export default function Quotation() {
     }));
   };
 
+  const firstPage = () => {
+    setPages((prev: PagesState) => ({
+      ...prev,
+      currentPage: 1,
+    }));
+  };
+
+  const lastPage = () => {
+    setPages((prev: PagesState) => ({
+      ...prev,
+      currentPage: pages.totalPages,
+    }));
+  };
+
   return (
     <div className="p-8 font-bold text-4xl h-full">
-      <div>
-        <h1>Quotações</h1>
+      <div className="flex justify-between">
+        <h1>Cotações</h1>
+        <div className="flex items-end justify-end">
+          <button className="bg-blue-500 w-[200px] p-2 hover:bg-blue-700 rounded-sm text-sm text-amber-50">
+            <span className="p-8"> Incluir cotação</span>
+          </button>
+        </div>
       </div>
-      <div className="flex items-end justify-end">
-        <button className="bg-blue-500 rounded-sm p-2 text-sm text-amber-50">
-          Incluir cotação
-        </button>
-      </div>
-
-      <div className="mt-8 h-[60%] overflow-y-auto border-2 rounded-lg p-4">
-        {quotations && quotations.data ? (
+      <div className="mt-8 p-4 h-auto overflow-y-auto border-2 rounded-lg  bg-white">
+        {quotations && quotations.data.length > 0 ? (
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead className="w-[100px]">Produto</TableHead>
-                <TableHead>Fornecedor</TableHead>
-                <TableHead className="w-[100px]">dolar</TableHead>
-                <TableHead>Data de pagamento</TableHead>
-                <TableHead>valor</TableHead>
-                <TableHead>Margin fin. Emp</TableHead>
-                <TableHead>Margin Emp</TableHead>
-                <TableHead>Margin do Fornecedor</TableHead>
-              </TableRow>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <TableHead className="font-bold" key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              ))}
             </TableHeader>
             <TableBody>
-              {quotations.data.map((data) => (
-                <TableRow key={data.id}>
-                  <TableCell className="font-medium">
+              {quotations.data.map((data: any) => (
+                <TableRow className="font-medium " key={data.id}>
+                  <TableCell className="font-medium 4">
                     {data.products.productName}
                   </TableCell>
-                  <TableCell>{data.suppliers.name}</TableCell>
+                  <TableCell className="font-medium ">
+                    {data.suppliers.name}
+                  </TableCell>
                   <TableCell>
                     {data.dollar_rate.toLocaleString("pt-Br", {
                       style: "currency",
@@ -161,20 +188,27 @@ export default function Quotation() {
             </TableBody>
           </Table>
         ) : (
-          <div className="flex mt-20 justify-center items-center h-[70%] w-full text-gray-500">
+          <div className="flex p-12 justify-center items-center h-[70%] w-full text-gray-500">
             <span>Nenhuma cotação encontrada.</span>
           </div>
         )}
       </div>
-      <div className="flex justify-end items-center p-4">
-        <span className="text-sm pr-4">
-          Pagina {pages.currentPage} de {pages.totalPages}
-        </span>
-        <ChevronsLeft></ChevronsLeft>
-        <ChevronLeft onClick={decrementPage}></ChevronLeft>
-        <ChevronRight onClick={nextPage}></ChevronRight>
-        <ChevronsRight></ChevronsRight>
-      </div>
+      {quotations && quotations.data.length > 0 ? (
+        <div className="flex justify-end items-center p-4">
+          <span className="text-sm pr-4">
+            Página {pages.currentPage} de {pages.totalPages}
+          </span>
+          <ChevronsLeft onClick={firstPage} className=" hover:bg-zinc-200 " />
+          <ChevronLeft
+            onClick={decrementPage}
+            className=" hover:bg-zinc-200 "
+          />
+          <ChevronRight onClick={nextPage} className=" hover:bg-zinc-200 " />
+          <ChevronsRight onClick={lastPage} className=" hover:bg-zinc-200 " />
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

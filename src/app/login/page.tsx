@@ -45,9 +45,7 @@ export default function Login(data: LoginFormData) {
 
   const authUser = async (data: any) => {
     // Armazenando o token no cookie com um tempo de expiração
-    setCookie(null, "access_token", data.token, {
-      maxAge: 60 * 60 * 24, // 1 dia
-    });
+    await setCookie(null, "access_token", data.token);
   };
 
   const onSubmit = (data: LoginFormData) => {
@@ -55,7 +53,7 @@ export default function Login(data: LoginFormData) {
   };
 
   return (
-    <main className="flex items-center justify-center h-screen bg-gray-100">
+    <main className="flex items-center justify-center w-full h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-100 h-100">
         <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
         <form

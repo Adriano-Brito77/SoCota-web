@@ -14,7 +14,7 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Quotação",
+    title: "Cotação",
     url: "/quotation",
     icon: Home,
   },
