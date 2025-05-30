@@ -1,5 +1,5 @@
 "use client";
-import { Trash, Pencil } from "lucide-react";
+import { Trash } from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -15,40 +15,44 @@ import { Button } from "./button";
 import { Input } from "./input";
 import { Label } from "./label";
 import { Supplier } from "@/app/suppliers/page";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "@/utils/api";
+import { toast } from "react-toastify";
+import { AppError } from "@/errors/app-error";
 
-interface dataProps {
-  data: Supplier[];
-  totalCount: number;
-  totalPages: number;
-  currentPage: number;
-}
-
-interface Edit {
-  edit?: () => void;
+interface Props {
   id: string;
-  name?: string;
+  name: string;
+  title: string;
+  onDelete: () => void;
 }
 
-export function DialogEdit({ id, nameLabel, supplier, edit }: Edit) {
+export function DialogDelete({ id, name, title, onDelete }: Props) {
   const [open, setOpen] = useState(false);
+
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <div className="flex gap-8">
-            <Pencil className="size-4 hover:text-gray-400" />
+            <Trash className="size-4 text-red-500 hover:text-red-300" />
           </div>
         </DialogTrigger>
 
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle>Editar </DialogTitle>
+            <DialogTitle>
+              Deseja excluir o {title} "{name}" ?
+            </DialogTitle>
           </DialogHeader>
 
-          <div className="flex-col items-center"></div>
+          <div className="flex-col items-center h-full"></div>
           <DialogFooter className="sm:justify-between mt-2">
-            <Button className="bg-zinc-100 hover:bg-zinc-300 text-black">
-              Editar
+            <Button
+              className="bg-zinc-100 hover:bg-zinc-300 text-black"
+              onClick={() => onDelete()}
+            >
+              Excluir
             </Button>
 
             <DialogClose asChild>
@@ -57,7 +61,7 @@ export function DialogEdit({ id, nameLabel, supplier, edit }: Edit) {
                 type="button"
                 variant="secondary"
               >
-                Fechar
+                Sair
               </Button>
             </DialogClose>
           </DialogFooter>

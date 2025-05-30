@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { DialogEdit } from "@/components/ui/dialog-edit";
+import { DialogEdit } from "@/components/ui/dialog-edit-suppliers";
 import {
   getCoreRowModel,
   useReactTable,
@@ -28,6 +28,7 @@ import { columns } from "./_components/table-column";
 import { useState } from "react";
 import { PagesState } from "../quotation/page";
 import { DialogSuppliers } from "@/components/ui/dialog-suppliers";
+import { DialogDelete } from "@/components/ui/dialog-delete";
 import { toast } from "react-toastify";
 import { AppError } from "@/errors/app-error";
 
@@ -80,21 +81,24 @@ export default function Suppliers() {
 
   const mutation = useMutation({
     mutationFn: async (data: Supplier) => {
-      const res = await api.patch(`/suppliers/${data.id}`, data);
-      console.log("Login response:", res);
+      const res = await api.delete(`/suppliers/${data.id}`);
 
       return res.data;
     },
-    onSuccess: (data) => {
-      toast.success("Fornecedor atualizado com sucesso!");
-      // Redireciona para a página inicial após o login
+    onSuccess: async (data) => {
+      await refetch?.();
+      toast.success("Fornecedor excluido com sucesso!");
     },
+
     onError: (error: unknown) => {
       const errorMessage =
-        error instanceof AppError ? error.message : "Erro ao realizar login.";
+        error instanceof AppError ? error.message : "Erro ao realizar Edição.";
       toast.error(errorMessage);
     },
   });
+  const handleDelete = (e: Supplier) => {
+    mutation.mutate(e);
+  };
 
   const nextPage = () => {
     setPages((prev: PagesState) => ({
@@ -190,15 +194,12 @@ export default function Suppliers() {
                     </TableCell>
                     <TableCell>{data.finance_rate_after_date}</TableCell>
                     <TableCell className="flex justify-center gap-8">
-                      <DialogEdit
-                        nameLabel={[
-                          "Fornecedor:",
-                          "Financeiro de ida:",
-                          "Financeiro de volta:",
-                        ]}
+                      <DialogEdit supplier={data} refresh={refetch} />
+                      <DialogDelete
                         id={data.id}
-                        supplier={supplier.data}
-                        edit={() => mutation.mutate(data)}
+                        name={data.name}
+                        title="fornecedor"
+                        onDelete={() => mutation.mutate(data)}
                       />
                     </TableCell>
                   </TableRow>
