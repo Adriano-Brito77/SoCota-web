@@ -40,7 +40,6 @@ export function DialogEdit({ supplier, refresh }: Edit) {
   const mutation = useMutation({
     mutationFn: async (data: Supplier) => {
       const res = await api.patch(`/suppliers/${data.id}`, data);
-      console.log("Login response:", res);
 
       return res.data;
     },

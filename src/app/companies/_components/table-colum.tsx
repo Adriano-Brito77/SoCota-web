@@ -18,4 +18,11 @@ export const columns: ColumnDef<Companies>[] = [
     ),
     filterFn: "includesString",
   },
+  {
+    accessorKey: "edit_delete",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Editar/Excluir" />
+    ),
+    filterFn: "includesString",
+  },
 ];

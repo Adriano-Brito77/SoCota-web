@@ -12,13 +12,6 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { Button } from "./button";
-import { Input } from "./input";
-import { Label } from "./label";
-import { Supplier } from "@/app/suppliers/page";
-import { useMutation } from "@tanstack/react-query";
-import { api } from "@/utils/api";
-import { toast } from "react-toastify";
-import { AppError } from "@/errors/app-error";
 
 interface Props {
   id: string;
@@ -42,7 +35,7 @@ export function DialogDelete({ id, name, title, onDelete }: Props) {
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle>
-              Deseja excluir o {title} "{name}" ?
+              Deseja excluir {title} "{name}" ?
             </DialogTitle>
           </DialogHeader>
 

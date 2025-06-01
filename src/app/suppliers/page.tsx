@@ -96,9 +96,6 @@ export default function Suppliers() {
       toast.error(errorMessage);
     },
   });
-  const handleDelete = (e: Supplier) => {
-    mutation.mutate(e);
-  };
 
   const nextPage = () => {
     setPages((prev: PagesState) => ({

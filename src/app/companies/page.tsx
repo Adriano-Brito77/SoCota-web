@@ -3,7 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import React, { useState } from "react";
 import { PagesState } from "../quotation/page";
 import { api } from "@/utils/api";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   getCoreRowModel,
   useReactTable,
@@ -24,21 +24,22 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Pencil,
+  Trash,
 } from "lucide-react";
 
 import { DialogCloseButton } from "@/components/ui/dialog-import-products";
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { DialogCreateCompany } from "@/components/ui/dialog-create-company";
 import { Label } from "@radix-ui/react-dropdown-menu";
 import { Input } from "@/components/ui/input";
+import { DialogDelete } from "@/components/ui/dialog-delete";
+import { AppError } from "@/errors/app-error";
+import { toast } from "react-toastify";
+import { DialogEditCompany } from "@/components/ui/dialog-edit-companies";
 
-interface profitMargins {
-  id: string;
-  company_id: string;
+export interface profitMargins {
+  id?: string;
   profit_amount: number;
 }
 
@@ -124,13 +125,31 @@ export default function Companies() {
       currentPage: pages.totalPages,
     }));
   };
+
+  const mutation = useMutation({
+    mutationFn: async (data: Companies) => {
+      const res = await api.delete(`/companies/${data.id}`);
+
+      return res.data;
+    },
+    onSuccess: async (data) => {
+      await refetch?.();
+      toast.success("Fornecedor excluido com sucesso!");
+    },
+
+    onError: (error: unknown) => {
+      const errorMessage =
+        error instanceof AppError ? error.message : "Erro ao realizar Edição.";
+      toast.error(errorMessage);
+    },
+  });
   return (
     <div>
       <main className="p-8  text-4xl h-full">
         <div className="flex justify-between">
           <h1 className="font-bold">Empresas</h1>
 
-          <DialogCloseButton />
+          <DialogCreateCompany refresh={refetch} />
         </div>
 
         <div className="flex justify-end align-middle pt-6">
@@ -184,14 +203,30 @@ export default function Companies() {
               <TableBody>
                 {companies.data.map((data) => (
                   <React.Fragment key={data.id}>
-                    <TableRow
-                      className="cursor-pointer hover:bg-muted"
-                      onClick={() =>
-                        setOpenRow(openRow === data.id ? null : data.id)
-                      }
-                    >
-                      <TableCell>{data.name}</TableCell>
-                      <TableCell>{data.finance_rate}</TableCell>
+                    <TableRow className="cursor-pointer hover:bg-muted">
+                      <TableCell
+                        onClick={() =>
+                          setOpenRow(openRow === data.id ? null : data.id)
+                        }
+                      >
+                        {data.name}
+                      </TableCell>
+                      <TableCell
+                        onClick={() =>
+                          setOpenRow(openRow === data.id ? null : data.id)
+                        }
+                      >
+                        {data.finance_rate}
+                      </TableCell>
+                      <TableCell className="flex gap-4">
+                        <DialogEditCompany company={data} refresh={refetch} />
+                        <DialogDelete
+                          id={data.id}
+                          name={data.name}
+                          title="a empresa"
+                          onDelete={() => mutation.mutate(data)}
+                        />
+                      </TableCell>
                     </TableRow>
                     {openRow === data.id && (
                       <TableRow>
@@ -199,14 +234,14 @@ export default function Companies() {
                           colSpan={columns.length}
                           className="bg-white p-4"
                         >
-                          <p className="grid grid-cols-3 gap-10 bg-white">
+                          <div className="grid grid-cols-3 gap-10 bg-white">
                             {data.profit_margins.map((profit, idx) => (
                               <Label key={profit.id}>
                                 Margem:
                                 <Input value={profit.profit_amount} disabled />
                               </Label>
                             ))}
-                          </p>
+                          </div>
                         </TableCell>
                       </TableRow>
                     )}

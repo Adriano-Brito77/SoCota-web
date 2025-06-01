@@ -24,6 +24,7 @@ import {
   flexRender,
 } from "@tanstack/react-table";
 import { Skeleton } from "@/components/ui/skeleton";
+import { DialogCreateQuotation } from "@/components/ui/dialog-create-quotation";
 
 export interface Quotation {
   id: string;
@@ -131,9 +132,7 @@ export default function Quotation() {
       <div className="flex justify-between">
         <h1>Cotações</h1>
         <div className="flex items-end justify-end">
-          <button className="bg-blue-500 w-[200px] p-2 hover:bg-blue-700 rounded-sm text-sm text-amber-50">
-            <span className="p-8"> Incluir cotação</span>
-          </button>
+          <DialogCreateQuotation />
         </div>
       </div>
       <div className="mt-8 p-4 h-auto overflow-y-auto border-2 rounded-lg  bg-white">
