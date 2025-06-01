@@ -35,7 +35,7 @@ const items = [
   },
   {
     title: "Empresa",
-    url: "#",
+    url: "/companies",
     icon: Settings,
   },
 ];

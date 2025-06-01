@@ -35,14 +35,14 @@ export const columns: ColumnDef<Products>[] = [
   {
     accessorKey: "deliveryStart",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Entrega de:" />
+      <DataTableColumnHeader column={column} title="Entrega de" />
     ),
     filterFn: "includesString",
   },
   {
     accessorKey: "deliveryEnd",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Entrega até:" />
+      <DataTableColumnHeader column={column} title="Entrega até" />
     ),
     filterFn: "includesString",
   },

@@ -49,7 +49,7 @@ interface Productspagination {
   currentPage: number;
 }
 
-const ProductsPage = () => {
+export default function ProductsPage() {
   const [supplier, setSupplier] = useState("");
   const [pages, setPages] = useState<PagesState>({
     totalCount: 0,
@@ -249,6 +249,4 @@ const ProductsPage = () => {
       </div>
     </main>
   );
-};
-
-export default ProductsPage;
+}
