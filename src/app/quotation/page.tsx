@@ -132,7 +132,7 @@ export default function Quotation() {
       <div className="flex justify-between">
         <h1>Cotações</h1>
         <div className="flex items-end justify-end">
-          <DialogCreateQuotation />
+          <DialogCreateQuotation getSuppliers={refetch} />
         </div>
       </div>
       <div className="mt-8 p-4 h-auto overflow-y-auto border-2 rounded-lg  bg-white">

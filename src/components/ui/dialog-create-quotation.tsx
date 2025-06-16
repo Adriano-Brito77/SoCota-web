@@ -17,7 +17,7 @@ import { Label } from "@/components/ui/label";
 import { api } from "@/utils/api";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
+import { CheckIcon, ChevronsUpDownIcon, Trash } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -41,6 +41,7 @@ import { DatePicker } from "./calender-quotation";
 import { SelectQuotationCompany } from "./select-company-quotation";
 import { SelectQuotationProfit } from "./select-profit-quotation";
 import { Half1Icon } from "@radix-ui/react-icons";
+import { format, formatDate, parse, parseISO } from "date-fns";
 
 interface DialogProps {
   getSuppliers?: () => void;
@@ -64,13 +65,25 @@ interface Quotation {
   product: { id: string; name: string; price: number };
   dollar_rate: number;
   delivery_fee: number;
-  payment_date: Date;
+  payment_date: string;
+  profit_margin_id: string;
+  supplier_id: string;
+  has_credit: boolean;
+}
+interface QuotationNew {
+  name: string;
+  data_cliente: string;
+  company_id: string;
+  product_id: string;
+  dollar_rate: number;
+  delivery_fee: number;
+  payment_date: string;
   profit_margin_id: string;
   supplier_id: string;
   has_credit: boolean;
 }
 
-type Quotations = Quotation[];
+type Quotations = QuotationNew[];
 
 export interface Supplier {
   id: string;
@@ -85,11 +98,12 @@ export interface Profit {
 }
 
 export function DialogCreateQuotation(getSupppliers: DialogProps) {
-  const [date, setDate] = useState<Date>(new Date());
-  const [dolar, setDolar] = useState(0);
+  const dateActual = new Date();
+  const [date, setDate] = useState<string>(format(dateActual, "yyyy/MM/dd"));
+  const [dolar, setDolar] = useState<string>("");
   const [company, setCompany] = useState("");
   const [profitMargin, setProfitMargin] = useState("");
-  const [deliveryFee, setDeliveryFee] = useState(0);
+  const [deliveryFee, setDeliveryFee] = useState<string>("");
   const [supplier, setSupplier] = useState("");
   const [openPopover, setOpenPopover] = useState(false);
   const [open, setOpen] = useState(false);
@@ -106,18 +120,17 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
     product: { id: "", name: "", price: 0 },
     dollar_rate: 0,
     delivery_fee: 0,
-    payment_date: new Date(),
+    payment_date: date,
     profit_margin_id: "",
     supplier_id: "",
     has_credit: hasCredit,
   });
 
-  console.log(Quotation, quotations);
-
   const { data: products } = useQuery<ProductPrice[]>({
     queryKey: ["products", supplier],
     queryFn: async () => {
       const response = await api.get(`/excel/allproducts/${supplier}`);
+      setProduct({ id: "", name: "", price: 0 });
       return response.data;
     },
   });
@@ -152,24 +165,58 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
       );
       const bid = response.data?.USDBRL?.bid;
       if (bid) {
-        setDolar(Number(Number(bid).toFixed(2)));
+        setDolar(Number(bid).toFixed(2));
       }
     } catch (error) {
       console.error("Erro ao buscar cotação do dólar:", error);
-      setDolar(0);
+      setDolar("");
     }
   };
 
   const handleDolar = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDolar(Number(e.target.value));
+    setDolar(e.target.value);
+  };
+
+  const handleRemoveQuotation = (index: number) => {
+    setQuotations((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleSubmit = () => {
-    const newQuotation: Quotation = {
+    if (!supplier) {
+      toast.error("Preencha o campo fornecedor");
+      return;
+    }
+
+    if (productquotation.id === "") {
+      toast.error("Selecione um produto");
+      return;
+    }
+    if (!company) {
+      toast.error("Preencha o campo empresa");
+      return;
+    }
+    if (!profitMargin) {
+      toast.error("Preencha o campo margin");
+      return;
+    }
+    if (Number(dolar) < 0 || Number(dolar) == 0) {
+      toast.error("O valor do dolar dever ser maior que zero");
+      return;
+    }
+    if (Number(deliveryFee) < 0 || Number(deliveryFee) == 0) {
+      toast.error(
+        "O valor do frete dever ser maior que zero e não deve estar em branco"
+      );
+      return;
+    }
+
+    const newQuotation: QuotationNew = {
+      data_cliente: format(date, "dd/MM/yyyy"),
+      name: productquotation.name,
       company_id: company,
-      product: productquotation,
-      dollar_rate: dolar,
-      delivery_fee: deliveryFee,
+      product_id: productquotation.id,
+      dollar_rate: Number(dolar),
+      delivery_fee: Number(deliveryFee),
       payment_date: date,
       profit_margin_id: profitMargin,
       supplier_id: supplier,
@@ -177,42 +224,37 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
     };
 
     // Atualiza o estado do objeto individual (se quiser manter)
-    setQuotation(newQuotation);
+    ///setQuotation({});
 
     // Adiciona no array de quotations
     setQuotations((prev) => [...prev, newQuotation]);
 
     //Se quiser, limpa campos aqui depois do submit
 
-    setDolar(0);
-    setDeliveryFee(0);
-    setDate(new Date());
+    setDolar("");
+    setDeliveryFee("");
+    setDate(format(dateActual, "dd/MM/yyyy"));
 
     setHasCredit(false);
   };
 
-  //   const mutation = useMutation({
-  //     mutationFn: async (data: Supplier) => {
-  //       const res = await api.post("suppliers/", data);
+  const mutation = useMutation({
+    mutationFn: async (data: Quotations) => {
+      const res = await api.post("quotations/", quotations);
 
-  //       return res.data;
-  //     },
-  //     onSuccess: (data) => {
-  //       toast.success("Fornecedor criado com sucesso!");
-  //       getSupppliers.getSuppliers?.();
-
-  //       setOpen(false);
-  //       setSupplier((prev) => ({
-  //         ...prev,
-  //         name: "",
-  //         finance_rate_before_date: 0,
-  //         finance_rate_after_date: 0,
-  //       }));
-  //     },
-  //     onError: (error: AppError) => {
-  //       toast.error(error.message || "Erro ao realizar login.");
-  //     },
-  //   });
+      return res.data;
+    },
+    onSuccess: (data) => {
+      toast.success(`${data.message}`);
+      getSupppliers.getSuppliers?.();
+      getSupppliers;
+      setQuotations([]);
+      setOpen(false);
+    },
+    onError: (error: AppError) => {
+      toast.error(error.message || "Erro ao realizar login.");
+    },
+  });
 
   return (
     <div>
@@ -265,7 +307,6 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                           framework.productName === productquotation.name
                       )?.productName
                     : "Selecione um produto"}
-                  <ChevronsUpDownIcon className="ml-2 h-4 w-full shrink-0 opacity-50 " />
                 </Button>
               </PopoverTrigger>
 
@@ -283,7 +324,7 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                             setProduct({
                               id: product.id,
                               name: product.productName,
-                              price: product.usdFobPrice, // ajuste conforme o nome correto do campo
+                              price: product.usdFobPrice,
                             });
                             setOpenPopover(false);
                           }}
@@ -292,12 +333,27 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                             className={cn(
                               "mr-2 h-4 w-full",
                               productquotation.id === product.id
-                                ? "opacity-100"
+                                ? "opacity-100 re"
                                 : "opacity-0"
                             )}
                           />
 
-                          {product.productName}
+                          <div className="grid grid-cols-[2fr_1fr_2fr] w-full">
+                            <span className="truncate w-[70%]">
+                              {product.priceCatalogName}
+                            </span>
+                            <span className="truncate  w-[80%]">
+                              {product.financialDueDate
+                                ? format(
+                                    new Date(product.financialDueDate),
+                                    "dd/MM/yyyy"
+                                  )
+                                : "Data não informada"}
+                            </span>
+                            <span className="truncate  w-[80%]">
+                              {product.productName}
+                            </span>
+                          </div>
                         </CommandItem>
                       ))}
                     </CommandGroup>
@@ -374,7 +430,8 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                   id="finance_rate"
                   name="finance_rate"
                   value={deliveryFee}
-                  onChange={(e) => setDeliveryFee(Number(e.target.value))}
+                  onChange={(e) => setDeliveryFee(e.target.value)}
+                  autoComplete="off"
                   type="number"
                   min={0}
                 />
@@ -389,33 +446,56 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
               </Label>
             </div>
 
-            <div>
-              <Label className="flex mt-2">
-                <div className="">
-                  <span className="">Possui credito:</span>
-                </div>
-                <Input
-                  className="w-5 h-5 bg-zinc-100 hover:bg-zinc-300 text-black "
-                  id="has_credit"
-                  name="hasCredit"
-                  type="checkbox"
-                  onChange={(e) => setHasCredit(e.target.checked)}
-                  min={0}
-                />
-              </Label>
+            <div className="flex mt-2 font-medium">
+              <div className="mr-2">
+                <span className="">Possui credito:</span>
+              </div>
+              <input
+                className="w-5 h-5 bg-zinc-100 hover:bg-red-500 text-red "
+                id="has_credit"
+                name="hasCredit"
+                type="checkbox"
+                onChange={(e) => setHasCredit(e.target.checked)}
+                min={0}
+              />
             </div>
 
-            <div className="mt-2 gap-2 border rounded-2xl p-4 grid grid-cols-2">
+            <div className="mt-2 gap-2 border rounded-2xl p-4 grid grid-cols-2 max-h-[60%]  overflow-auto">
               {quotations.length > 0 ? (
                 quotations.map((quotation, index) => (
                   <span
                     key={index}
-                    className="border rounded-2xl p-4 gap-4 grid grid-cols-2 h-fit "
+                    className="border rounded-2xl p-4 gap-4 flex "
                   >
-                    <p className="truncate w-30">{quotation.product.name}</p>
-                    <p>{quotation.dollar_rate}</p>
-                    <p>{quotation.delivery_fee}</p>
-                    <p>{quotation.has_credit ? "Sim" : "Não"}</p>
+                    <div className="grid grid-cols-2 gap-4 h-fit">
+                      <Label>
+                        Produto:
+                        <p className="truncate w-30">{quotation.name}</p>
+                      </Label>
+                      <Label>
+                        Dolar US$:
+                        <p>{quotation.dollar_rate}</p>
+                      </Label>
+                      <Label>
+                        Frete R$:
+                        <p>{quotation.delivery_fee}</p>
+                      </Label>
+                      <Label>
+                        Possui Crédito:
+                        <p>{quotation.has_credit ? "Sim" : "Não"}</p>
+                      </Label>
+                      <Label>
+                        Pagamento:
+                        <p>{quotation.data_cliente}</p>
+                      </Label>
+                    </div>
+
+                    <div
+                      className="flex items-center"
+                      onClick={() => handleRemoveQuotation(index)}
+                    >
+                      <Trash className="text-red-500 hover:text-red-300" />
+                    </div>
                   </span>
                 ))
               ) : (
@@ -426,13 +506,20 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
             </div>
           </div>
           <DialogFooter className="sm:justify-between mt-2">
-            <Button
-              className="bg-zinc-100 hover:bg-zinc-300 text-black"
-              onClick={handleSubmit}
-            >
-              Criar cotação
-            </Button>
-
+            <div className="flex gap-4">
+              <Button
+                className="bg-blue-500 hover:bg-blue-500 text-white"
+                onClick={handleSubmit}
+              >
+                Incluir cotação
+              </Button>
+              <Button
+                className="bg-zinc-100 hover:bg-zinc-300 text-black"
+                onClick={() => mutation.mutate(quotations)}
+              >
+                Criar cotação
+              </Button>
+            </div>
             <DialogClose asChild>
               <Button
                 className="bg-zinc-100 hover:bg-zinc-300 text-black"

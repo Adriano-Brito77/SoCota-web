@@ -13,7 +13,7 @@ import {
 import { ptBR } from "date-fns/locale";
 
 interface DatePickerProps {
-  onChange?: (date: Date) => void;
+  onChange?: (date: string) => void;
 }
 
 export function DatePicker({ onChange }: DatePickerProps) {
@@ -22,7 +22,7 @@ export function DatePicker({ onChange }: DatePickerProps) {
   const handleSelect = (selectedDate?: Date) => {
     if (!selectedDate) return;
     setDate(selectedDate);
-    onChange?.(selectedDate);
+    onChange?.(format(selectedDate, "yyyy/MM/dd"));
   };
 
   return (
