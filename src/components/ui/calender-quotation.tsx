@@ -13,15 +13,16 @@ import {
 import { ptBR } from "date-fns/locale";
 
 interface DatePickerProps {
-  onChange?: (date: Date | undefined) => void;
+  onChange?: (date: Date) => void;
 }
 
 export function DatePicker({ onChange }: DatePickerProps) {
-  const [date, setDate] = React.useState<Date>();
+  const [date, setDate] = React.useState<Date>(new Date());
 
-  const handleSelect = (selectedDate: Date | undefined) => {
+  const handleSelect = (selectedDate?: Date) => {
+    if (!selectedDate) return;
     setDate(selectedDate);
-    if (onChange) onChange(selectedDate); // avisa o pai
+    onChange?.(selectedDate);
   };
 
   return (
@@ -49,6 +50,7 @@ export function DatePicker({ onChange }: DatePickerProps) {
           onSelect={handleSelect}
           locale={ptBR}
           initialFocus
+          disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
         />
       </PopoverContent>
     </Popover>

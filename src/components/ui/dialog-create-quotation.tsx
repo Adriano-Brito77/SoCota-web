@@ -40,6 +40,7 @@ import axios from "axios";
 import { DatePicker } from "./calender-quotation";
 import { SelectQuotationCompany } from "./select-company-quotation";
 import { SelectQuotationProfit } from "./select-profit-quotation";
+import { Half1Icon } from "@radix-ui/react-icons";
 
 interface DialogProps {
   getSuppliers?: () => void;
@@ -58,6 +59,18 @@ export interface ProductPrice {
   financialDueDate: Date;
   userId: string;
 }
+interface Quotation {
+  company_id: string;
+  product: { id: string; name: string; price: number };
+  dollar_rate: number;
+  delivery_fee: number;
+  payment_date: Date;
+  profit_margin_id: string;
+  supplier_id: string;
+  has_credit: boolean;
+}
+
+type Quotations = Quotation[];
 
 export interface Supplier {
   id: string;
@@ -72,17 +85,34 @@ export interface Profit {
 }
 
 export function DialogCreateQuotation(getSupppliers: DialogProps) {
-  const [date, setDate] = useState<Date | undefined>(new Date());
-  const [dolar, setDolar] = useState("");
+  const [date, setDate] = useState<Date>(new Date());
+  const [dolar, setDolar] = useState(0);
   const [company, setCompany] = useState("");
+  const [profitMargin, setProfitMargin] = useState("");
+  const [deliveryFee, setDeliveryFee] = useState(0);
   const [supplier, setSupplier] = useState("");
   const [openPopover, setOpenPopover] = useState(false);
   const [open, setOpen] = useState(false);
+  const [hasCredit, setHasCredit] = useState(false);
   const [productquotation, setProduct] = useState({
     id: "",
     name: "",
     price: 0,
   });
+  const [quotations, setQuotations] = useState<Quotations>([]);
+
+  const [Quotation, setQuotation] = useState<Quotation>({
+    company_id: "",
+    product: { id: "", name: "", price: 0 },
+    dollar_rate: 0,
+    delivery_fee: 0,
+    payment_date: new Date(),
+    profit_margin_id: "",
+    supplier_id: "",
+    has_credit: hasCredit,
+  });
+
+  console.log(Quotation, quotations);
 
   const { data: products } = useQuery<ProductPrice[]>({
     queryKey: ["products", supplier],
@@ -107,10 +137,9 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
     },
   });
   const profit = useQuery<Profit[]>({
-    queryKey: ["profit", companys],
+    queryKey: ["profit", companys, company],
     queryFn: async () => {
       const response = await api.get(`/companies/allprofit/${company}`);
-      console.log(response.data);
       return response.data;
     },
   });
@@ -123,16 +152,43 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
       );
       const bid = response.data?.USDBRL?.bid;
       if (bid) {
-        setDolar(Number(bid).toFixed(2));
+        setDolar(Number(Number(bid).toFixed(2)));
       }
     } catch (error) {
       console.error("Erro ao buscar cotação do dólar:", error);
-      setDolar("");
+      setDolar(0);
     }
   };
 
   const handleDolar = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setDolar(e.target.value);
+    setDolar(Number(e.target.value));
+  };
+
+  const handleSubmit = () => {
+    const newQuotation: Quotation = {
+      company_id: company,
+      product: productquotation,
+      dollar_rate: dolar,
+      delivery_fee: deliveryFee,
+      payment_date: date,
+      profit_margin_id: profitMargin,
+      supplier_id: supplier,
+      has_credit: hasCredit,
+    };
+
+    // Atualiza o estado do objeto individual (se quiser manter)
+    setQuotation(newQuotation);
+
+    // Adiciona no array de quotations
+    setQuotations((prev) => [...prev, newQuotation]);
+
+    //Se quiser, limpa campos aqui depois do submit
+
+    setDolar(0);
+    setDeliveryFee(0);
+    setDate(new Date());
+
+    setHasCredit(false);
   };
 
   //   const mutation = useMutation({
@@ -178,6 +234,7 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
           <DialogHeader>
             <DialogTitle>Crie uma Cotação</DialogTitle>
           </DialogHeader>
+
           <Label className="flex-col">
             <div className="w-full">
               <span className="flex items-start w-full">Fornecedor:</span>
@@ -187,6 +244,7 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
               onChange={setSupplier}
             />
           </Label>
+
           <Label className="flex-col">
             <div className="w-full">
               <span className="flex items-start w-full">Produto:</span>
@@ -281,7 +339,7 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                 <span className="flex w-full ">Margin:</span>
                 <SelectQuotationProfit
                   data={profit.data ?? []}
-                  onChange={setCompany}
+                  onChange={setProfitMargin}
                 />
               </Label>
             </div>
@@ -294,7 +352,7 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                     id="finance_rate"
                     name="finance_rate"
                     value={dolar}
-                    type="text"
+                    type="number"
                     min={0}
                     onChange={handleDolar}
                   />
@@ -315,9 +373,9 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                 <Input
                   id="finance_rate"
                   name="finance_rate"
-                  value={`${productquotation.price}`}
-                  disabled
-                  type="text"
+                  value={deliveryFee}
+                  onChange={(e) => setDeliveryFee(Number(e.target.value))}
+                  type="number"
                   min={0}
                 />
               </Label>
@@ -330,9 +388,48 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                 <DatePicker onChange={setDate} />
               </Label>
             </div>
+
+            <div>
+              <Label className="flex mt-2">
+                <div className="">
+                  <span className="">Possui credito:</span>
+                </div>
+                <Input
+                  className="w-5 h-5 bg-zinc-100 hover:bg-zinc-300 text-black "
+                  id="has_credit"
+                  name="hasCredit"
+                  type="checkbox"
+                  onChange={(e) => setHasCredit(e.target.checked)}
+                  min={0}
+                />
+              </Label>
+            </div>
+
+            <div className="mt-2 gap-2 border rounded-2xl p-4 grid grid-cols-2">
+              {quotations.length > 0 ? (
+                quotations.map((quotation, index) => (
+                  <span
+                    key={index}
+                    className="border rounded-2xl p-4 gap-4 grid grid-cols-2 h-fit "
+                  >
+                    <p className="truncate w-30">{quotation.product.name}</p>
+                    <p>{quotation.dollar_rate}</p>
+                    <p>{quotation.delivery_fee}</p>
+                    <p>{quotation.has_credit ? "Sim" : "Não"}</p>
+                  </span>
+                ))
+              ) : (
+                <div>
+                  <h1>Não há cotações</h1>
+                </div>
+              )}
+            </div>
           </div>
           <DialogFooter className="sm:justify-between mt-2">
-            <Button className="bg-zinc-100 hover:bg-zinc-300 text-black">
+            <Button
+              className="bg-zinc-100 hover:bg-zinc-300 text-black"
+              onClick={handleSubmit}
+            >
               Criar cotação
             </Button>
 
