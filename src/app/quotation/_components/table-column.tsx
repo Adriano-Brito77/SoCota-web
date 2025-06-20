@@ -40,6 +40,13 @@ export const columns: ColumnDef<Quotation>[] = [
     filterFn: "includesString",
   },
   {
+    accessorKey: "delivery_fee",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Frete" />
+    ),
+    filterFn: "includesString",
+  },
+  {
     accessorKey: "profit_amount",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Margin Empresa" />

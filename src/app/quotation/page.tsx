@@ -204,6 +204,12 @@ export default function Quotation() {
                         currency: "BRL",
                       })}
                     </TableCell>
+                    <TableCell>
+                      {data.delivery_fee.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </TableCell>
                     <TableCell>{data.profit_margins.profit_amount}</TableCell>
                     <TableCell>{data.companies.finance_rate}</TableCell>
                     <TableCell>

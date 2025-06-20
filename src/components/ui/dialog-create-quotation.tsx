@@ -233,7 +233,6 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
 
     setDolar("");
     setDeliveryFee("");
-    setDate(format(dateActual, "dd/MM/yyyy"));
 
     setHasCredit(false);
   };
@@ -256,6 +255,8 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
     },
   });
 
+  console.log(productquotation);
+
   return (
     <div>
       <Dialog
@@ -272,7 +273,7 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
           </div>
         </DialogTrigger>
 
-        <DialogContent className="min-w-[50%]">
+        <DialogContent className="min-w-[55%]">
           <DialogHeader>
             <DialogTitle>Crie uma Cotação</DialogTitle>
           </DialogHeader>
@@ -311,7 +312,7 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
               </PopoverTrigger>
 
               <PopoverContent className="w-[var(--radix-popover-trigger-width)]">
-                <Command>
+                <Command className="max-h-[30vh]">
                   <CommandInput />
                   <CommandList>
                     <CommandEmpty>Produtos não encontrado.</CommandEmpty>
@@ -319,8 +320,8 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                       {products?.map((product) => (
                         <CommandItem
                           key={product.id}
-                          value={product.productName}
-                          onSelect={(currentValue) => {
+                          value={`${product.id} ${product.productName} ${product.priceCatalogName} ${product.financialDueDate}`}
+                          onSelect={() => {
                             setProduct({
                               id: product.id,
                               name: product.productName,
@@ -331,14 +332,14 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                         >
                           <CheckIcon
                             className={cn(
-                              "mr-2 h-4 w-full",
-                              productquotation.id === product.id
-                                ? "opacity-100 re"
+                              "mr-2 h-4 w-4 ",
+                              productquotation?.id === product.id
+                                ? "opacity-100 "
                                 : "opacity-0"
                             )}
                           />
 
-                          <div className="grid grid-cols-[2fr_1fr_2fr] w-full">
+                          <div className="grid grid-cols-[1fr_1fr_2fr_1fr] w-full">
                             <span className="truncate w-[70%]">
                               {product.priceCatalogName}
                             </span>
@@ -352,6 +353,9 @@ export function DialogCreateQuotation(getSupppliers: DialogProps) {
                             </span>
                             <span className="truncate  w-[80%]">
                               {product.productName}
+                            </span>
+                            <span className="truncate  w-[80%]">
+                              {product.usdFobPrice}
                             </span>
                           </div>
                         </CommandItem>
