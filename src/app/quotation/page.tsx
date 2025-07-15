@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { format } from "date-fns";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { api } from "@/utils/api";
 import { columns } from "@/app/quotation/_components/table-column";
 import {
@@ -16,6 +16,7 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Trash,
 } from "lucide-react";
 import { useState } from "react";
 import {
@@ -25,6 +26,9 @@ import {
 } from "@tanstack/react-table";
 import { Skeleton } from "@/components/ui/skeleton";
 import { DialogCreateQuotation } from "@/components/ui/dialog-create-quotation";
+import { DialogDelete } from "@/components/ui/dialog-delete";
+import { toast } from "react-toastify";
+import { AppError } from "@/errors/app-error";
 
 export interface Quotation {
   id: string;
@@ -90,6 +94,24 @@ export default function Quotation() {
         totalCount: response.data.totalCount,
       }));
       return response.data;
+    },
+  });
+
+  const mutation = useMutation({
+    mutationFn: async (data: Quotation) => {
+      const res = await api.delete(`/quotations/${data.id}`);
+
+      return res.data;
+    },
+    onSuccess: async (data) => {
+      await refetch?.();
+      toast.success("Cotação excluida com sucesso !");
+    },
+
+    onError: (error: unknown) => {
+      const errorMessage =
+        error instanceof AppError ? error.message : "Erro ao realizar Edição.";
+      toast.error(errorMessage);
     },
   });
 
@@ -184,6 +206,9 @@ export default function Quotation() {
                 quotations.data.map((data: any) => (
                   <TableRow className="font-medium " key={data.id}>
                     <TableCell className="font-medium 4">
+                      <input type="checkbox" />
+                    </TableCell>
+                    <TableCell className="font-medium 4">
                       {data.products.productName}
                     </TableCell>
                     <TableCell className="font-medium ">
@@ -214,6 +239,17 @@ export default function Quotation() {
                     <TableCell>{data.companies.finance_rate}</TableCell>
                     <TableCell>
                       {data.suppliers.finance_rate_before_date}
+                    </TableCell>
+                    <TableCell className="">
+                      <DialogDelete
+                        id={data.id}
+                        name={data.price.toLocaleString("pt-BR", {
+                          style: "currency",
+                          currency: "BRL",
+                        })}
+                        title="a cotação no valor"
+                        onDelete={() => mutation.mutate(data)}
+                      />
                     </TableCell>
                   </TableRow>
                 ))

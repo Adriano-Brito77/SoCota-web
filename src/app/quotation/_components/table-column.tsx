@@ -5,6 +5,11 @@ import { Quotation } from "../page";
 
 export const columns: ColumnDef<Quotation>[] = [
   {
+    accessorKey: "checkbox",
+    header: ({ column }) => <DataTableColumnHeader column={column} title=" " />,
+    filterFn: "includesString",
+  },
+  {
     accessorKey: "productName",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Produto" />

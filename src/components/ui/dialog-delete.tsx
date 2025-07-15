@@ -27,15 +27,15 @@ export function DialogDelete({ id, name, title, onDelete }: Props) {
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
-          <div className="flex gap-8">
+          <div className="flex gap-10">
             <Trash className="size-4 text-red-500 hover:text-red-300" />
           </div>
         </DialogTrigger>
 
-        <DialogContent className="sm:max-w-md">
+        <DialogContent className="sm:max-w-4xl">
           <DialogHeader>
             <DialogTitle>
-              Deseja excluir {title} "{name}" ?
+              Deseja excluir {title} {name}?
             </DialogTitle>
           </DialogHeader>
 
