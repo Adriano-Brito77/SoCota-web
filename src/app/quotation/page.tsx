@@ -71,7 +71,7 @@ export default function Quotation() {
   console.log("Selected Items:", selectedItems);
   const {
     isPending,
-    error,
+  
     refetch,
     data: quotations,
   } = useQuery<QuotationProps>({
@@ -163,7 +163,7 @@ export default function Quotation() {
         <h1>Cotações</h1>
         <div className="flex flex-col gap-1 ">
           <DialogCreateQuotation getSuppliers={refetch} />
-          <DialogShowQuotation quotation={selectedItems} />
+          {selectedItems.length >= 1 ? <DialogShowQuotation quotation={selectedItems} /> : null}
         </div>
       </div>
 

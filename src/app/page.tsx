@@ -1,8 +1,6 @@
 "use client";
-import { parseCookies } from "nookies";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { Login } from "./_components/page";
 
 export default function Home() {
-  return <main></main>;
+  return <main className="flex items-center justify-center w-full h-screen bg-gray-100"><Login /></main>;
 }

@@ -1,14 +1,10 @@
 "use client";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+
 import { z } from "zod";
-import { toast } from "react-toastify";
-import { api } from "@/utils/api";
-import { AppError } from "@/errors/app-error";
-import { useRouter } from "next/navigation";
-import { setCookie } from "nookies";
-import { set } from "date-fns";
+import { useAuth } from "@/hooks/useAuth";
+
 
 const schema = z.object({
   email: z.string().email("Email invalido.").min(1, "Email é obrigatório"),
@@ -17,8 +13,13 @@ const schema = z.object({
 
 export type LoginFormData = z.infer<typeof schema>;
 
-export default function Login(data: LoginFormData) {
-  const router = useRouter();
+export  function Login() {
+
+  const { 
+    signIn,
+    isLoading
+  } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -27,31 +28,11 @@ export default function Login(data: LoginFormData) {
     resolver: zodResolver(schema),
   });
 
-  const mutation = useMutation({
-    mutationFn: async (data: LoginFormData) => {
-      const res = await api.post("auth/login", data);
-      console.log("Login response:", res);
-      authUser(res.data);
-      return res.data;
-    },
-    onSuccess: (data) => {
-      toast.success("Login realizado com sucesso!");
-      router.push("/quotation"); // Redireciona para a página inicial após o login
-    },
-    onError: (error: AppError) => {
-      toast.error(error.message || "Erro ao realizar login.");
-    },
-  });
+ 
 
-  const authUser = async (data: any) => {
-    // Armazenando o token no cookie com um tempo de expiração
-    setCookie(null, "access_token", data.token, {
-      maxAge: 30 * 24 * 60 * 60,
-    });
-  };
 
   const onSubmit = (data: LoginFormData) => {
-    mutation.mutate(data);
+    signIn(data);
   };
 
   return (
@@ -88,10 +69,10 @@ export default function Login(data: LoginFormData) {
 
           <button
             type="submit"
-            disabled={mutation.isPending}
+            disabled={isLoading}
             className="bg-blue-500 text-white p-2  rounded hover:bg-blue-600 transition-colors duration-200"
           >
-            {mutation.isPending ? "Entrando..." : "Entrar"}
+            {isLoading ? "Entrando..." : "Entrar"}
           </button>
         </form>
       </div>

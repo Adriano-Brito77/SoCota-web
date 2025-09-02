@@ -26,9 +26,10 @@ export interface Quotation {
 
 interface DialogShowQuotationProps {
   quotation: Quotation[];
+  
 }
 
-export function DialogShowQuotation({ quotation }: DialogShowQuotationProps) {
+export function DialogShowQuotation({ quotation,  }: DialogShowQuotationProps) {
   const [open, setOpen] = useState(false);
 
   // Agrupa por product_id
@@ -58,7 +59,7 @@ export function DialogShowQuotation({ quotation }: DialogShowQuotationProps) {
           <div className="flex">
             <Button
               className="bg-blue-500 w-[200px] h-full p-2 hover:bg-blue-700 text-amber-50 rounded-sm font-semibold"
-              disabled={quotation.length === 0}
+              
             >
               Mostrar cotações
             </Button>
