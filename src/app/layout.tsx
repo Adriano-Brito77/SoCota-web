@@ -3,9 +3,6 @@ import ReactQueryProvider from "@/context/ReactQueryProvider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AuthContextProvider } from "@/context/AuthContext";
 
-
-
-
 export default function RootLayout({
   children,
 }: {
@@ -25,7 +22,9 @@ export default function RootLayout({
       <body className="w-full h-full bg-zinc-100">
         <ReactQueryProvider>
           <AuthContextProvider>
-            <SidebarProvider>{children}</SidebarProvider>
+            <SidebarProvider>
+              {children}
+            </SidebarProvider>
           </AuthContextProvider>
         </ReactQueryProvider>
       </body>

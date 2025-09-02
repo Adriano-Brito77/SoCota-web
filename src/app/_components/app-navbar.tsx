@@ -1,3 +1,5 @@
+"use client";
+
 import { useAuth } from "@/hooks/useAuth";
 export function NavBar() {
   const { user } = useAuth();

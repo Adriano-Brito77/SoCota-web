@@ -57,7 +57,7 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
           maxAge: 60 * 60 * 24 * 180,
           path: "/",
         });
-
+        console.log(user?.name)
         api.defaults.headers.Authorization = `Bearer ${data.token}`;
         setIsAuthenticated(true);
         push("/quotation");
@@ -83,14 +83,7 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
       api.defaults.headers.Authorization = `Bearer ${access_token}`;
       setIsAuthenticated(true);
 
-      // 🔹 Opcional: podemos buscar os dados do usuário autenticado
-      api.get<User>("/auth/me")
-        .then((response) => {
-          setUser(response.data);
-        })
-        .catch(() => {
-          signOut();
-        });
+      
     }
   }, []);
 

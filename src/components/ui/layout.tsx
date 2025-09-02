@@ -1,5 +1,5 @@
-import { AppSidebar } from "../app-sidebar";
-import { NavBar } from "../app-navbar";
+import { AppSidebar } from "../../app/_components/app-sidebar";
+import { NavBar } from "../../app/_components/app-navbar";
 import { Bounce, ToastContainer } from "react-toastify";
 
 export default function LayoutPage({
