@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { createContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -47,43 +47,57 @@ export function AuthContextProvider({ children }: { children: React.ReactNode })
     return response.data;
   }
 
-  const { mutate, isPending } = useMutation<SignInResponse, AppError, SignInProps>(
-  
-    {
-      mutationFn: signInRequest,
-      onSuccess: (data) => {
-        setUser(data.user);
-        setCookie(undefined, "access_token", data.token, {
-          maxAge: 60 * 60 * 24 * 180,
-          path: "/",
-        });
-        console.log(user?.name)
-        api.defaults.headers.Authorization = `Bearer ${data.token}`;
-        setIsAuthenticated(true);
-        push("/quotation");
-        toast.success("Login realizado com sucesso");
-      },
-      onError: (error: AppError) => {
-        toast.error(error.message || "Erro ao realizar login");
-      },
-    }
-  );
+  const { mutate, isPending } = useMutation<SignInResponse, AppError, SignInProps>({
+    mutationFn: signInRequest,
+    onSuccess: (data) => {
+      // Salva usuário no estado
+      setUser(data.user);
+      setIsAuthenticated(true);
+
+      // Salva token e usuário no cookie/localStorage
+      setCookie(undefined, "access_token", data.token, {
+        maxAge: 60 * 60 * 24 * 180,
+        path: "/",
+      });
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      // Configura autorização automática
+      api.defaults.headers.Authorization = `Bearer ${data.token}`;
+
+      // Redireciona
+      push("/quotation");
+      toast.success("Login realizado com sucesso");
+    },
+    onError: (error: AppError) => {
+      toast.error(error.message || "Erro ao realizar login");
+    },
+  });
 
   function signOut() {
     destroyCookie(undefined, "access_token");
+    localStorage.removeItem("user");
     setUser(null);
     setIsAuthenticated(false);
     push("/");
   }
 
-  // Verifica token salvo no cookie
+  // Recupera usuário salvo no primeiro carregamento
   useEffect(() => {
     const { access_token } = parseCookies();
+
     if (access_token) {
       api.defaults.headers.Authorization = `Bearer ${access_token}`;
       setIsAuthenticated(true);
 
-      
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      } else {
+        // Se não houver user salvo, busca do backend
+        api.get<User>("/auth/me")
+          .then((res) => setUser(res.data))
+          .catch(() => signOut());
+      }
     }
   }, []);
 

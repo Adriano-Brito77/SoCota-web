@@ -1,3 +1,4 @@
+'use client'
 import { Calendar, Home, Search, Settings } from "lucide-react";
 
 import {
@@ -10,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+
 
 // Menu items.
 const items = [

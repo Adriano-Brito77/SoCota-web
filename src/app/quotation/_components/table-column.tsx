@@ -4,11 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Quotation } from "../page";
 
 export const columns: ColumnDef<Quotation>[] = [
-  {
-    accessorKey: "checkbox",
-    header: ({ column }) => <DataTableColumnHeader column={column} title=" " />,
-    filterFn: "includesString",
-  },
+ 
   {
     accessorKey: "productName",
     header: ({ column }) => (
@@ -70,6 +66,10 @@ export const columns: ColumnDef<Quotation>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Margin de Fin. For." />
     ),
+    filterFn: "includesString",
+  }, {
+    accessorKey: "checkbox",
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Exclusão de cotação" />,
     filterFn: "includesString",
   },
 ];

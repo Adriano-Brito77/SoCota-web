@@ -1,5 +1,5 @@
 "use client";
-import { Badge } from "@/components/ui/badge";
+
 import React, { useState } from "react";
 import { PagesState } from "../quotation/page";
 import { api } from "@/utils/api";
@@ -18,17 +18,16 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { format } from "date-fns";
+
 import {
   ChevronLeft,
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
-  Pencil,
-  Trash,
+  
 } from "lucide-react";
 
-import { DialogCloseButton } from "@/components/ui/dialog-import-products";
+
 import { Skeleton } from "@/components/ui/skeleton";
 import { DialogCreateCompany } from "@/components/ui/dialog-create-company";
 import { Label } from "@radix-ui/react-dropdown-menu";
@@ -57,6 +56,17 @@ interface CompaniesPagination {
   currentPage: number;
 }
 
+export interface ProfitMargin {
+  id: string;
+  profit_amount: number;
+}
+
+export interface ProfitMarginsPagination {
+  data: ProfitMargin[];
+  totalPages: number;
+  totalCount: number;
+}
+
 export default function Companies() {
   const [openRow, setOpenRow] = useState<string | null>(null);
   const [pages, setPages] = useState<PagesState>({
@@ -82,7 +92,7 @@ export default function Companies() {
           search: "",
         },
       });
-      console.log(response);
+    
       setPages((prev: PagesState) => ({
         ...prev,
         totalPages: response.data.totalPages,
@@ -92,6 +102,9 @@ export default function Companies() {
       return response.data;
     },
   });
+
+
+ 
   const table = useReactTable({
     data: companies?.data ?? [],
     columns,
@@ -236,7 +249,7 @@ export default function Companies() {
                         >
                           <div className="grid grid-cols-3 gap-10 bg-white">
                             {data.profit_margins.map((profit, idx) => (
-                              <Label key={profit.id}>
+                              <Label key={idx}>
                                 Margem:
                                 <Input value={profit.profit_amount} disabled />
                               </Label>

@@ -2,6 +2,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/context/ReactQueryProvider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AuthContextProvider } from "@/context/AuthContext";
+import { ToastContainer } from "react-toastify";
 
 export default function RootLayout({
   children,
@@ -24,6 +25,8 @@ export default function RootLayout({
           <AuthContextProvider>
             <SidebarProvider>
               {children}
+
+              <ToastContainer position="top-center"  />
             </SidebarProvider>
           </AuthContextProvider>
         </ReactQueryProvider>
