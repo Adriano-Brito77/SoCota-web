@@ -20,8 +20,8 @@ export interface Quotation {
   payment_date: string;
   price: number;
   delivery_fee: number | null;
-  profit_margins: { profit_amount: number };
-  companies: { finance_rate: number };
+  
+  companies: { finance_rate: number,profit_margins: { profit_amount: number } };
 }
 
 interface DialogShowQuotationProps {

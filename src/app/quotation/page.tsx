@@ -38,9 +38,8 @@ export interface Quotation {
   dollar_rate: number;
   payment_date: string;
   price: number;
-  delivery_fee: number | null;
-  profit_margins: { profit_amount: number };
-  companies: { finance_rate: number };
+  delivery_fee: number | null;  
+  companies: { finance_rate: number,profit_margins: { profit_amount: number } };
 }
 
 export interface QuotationProps {
@@ -243,7 +242,7 @@ export default function Quotation() {
                           currency: "BRL",
                         })}
                       </TableCell>
-                      <TableCell>{data.profit_margins.profit_amount}</TableCell>
+                      <TableCell>{data.companies.profit_margins.profit_amount}</TableCell>
                       <TableCell>{data.companies.finance_rate}</TableCell>
                       <TableCell>
                         {data.suppliers.finance_rate_before_date}
