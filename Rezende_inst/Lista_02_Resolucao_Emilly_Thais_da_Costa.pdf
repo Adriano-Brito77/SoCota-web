@@ -1,0 +1,109 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 2906 >>
+stream
+BT /F2 20 Tf 48.00 787.89 Td (Lista 02 - Resolucao) Tj ET
+BT /F1 10 Tf 48.00 759.89 Td (Aluna: Emilly Thais da Costa) Tj ET
+BT /F2 15 Tf 48.00 738.89 Td (Questao 1) Tj ET
+BT /F3 9 Tf 48.00 717.89 Td (\(x, y, z\) = A + t v) Tj ET
+BT /F3 9 Tf 48.00 705.89 Td (\(x, y, z\) = \(5, 0, -3\) + t\(-2, 4, 1\)) Tj ET
+BT /F3 9 Tf 48.00 693.89 Td (Resposta: alternativa d\)) Tj ET
+BT /F2 15 Tf 48.00 673.89 Td (Questao 2) Tj ET
+BT /F3 9 Tf 48.00 652.89 Td (x = -1 + 5t, y = 2 - 3t, z = 4t) Tj ET
+BT /F3 9 Tf 48.00 640.89 Td (t = 0 -> P = \(-1, 2, 0\)) Tj ET
+BT /F3 9 Tf 48.00 628.89 Td (v = \(5, -3, 4\)) Tj ET
+BT /F3 9 Tf 48.00 616.89 Td (Resposta: alternativa b\)) Tj ET
+BT /F2 15 Tf 48.00 596.89 Td (Questao 3) Tj ET
+BT /F3 9 Tf 48.00 575.89 Td (AB = B - A = \(0 - 2, 4 - \(-1\), 5 - 3\) = \(-2, 5, 2\)) Tj ET
+BT /F3 9 Tf 48.00 563.89 Td (\(x, y, z\) = \(2, -1, 3\) + t\(-2, 5, 2\)) Tj ET
+BT /F3 9 Tf 48.00 551.89 Td (x = 2 - 2t, y = -1 + 5t, z = 3 + 2t) Tj ET
+BT /F3 9 Tf 48.00 539.89 Td (Resposta: alternativa a\)) Tj ET
+BT /F2 15 Tf 48.00 519.89 Td (Questao 4) Tj ET
+BT /F3 9 Tf 48.00 498.89 Td (P = \(-3, 1, 6\), v = \(4, 2, -5\)) Tj ET
+BT /F3 9 Tf 48.00 486.89 Td (\(x - \(-3\)\)/4 = \(y - 1\)/2 = \(z - 6\)/\(-5\)) Tj ET
+BT /F3 9 Tf 48.00 474.89 Td (\(x + 3\)/4 = \(y - 1\)/2 = \(z - 6\)/\(-5\)) Tj ET
+BT /F3 9 Tf 48.00 462.89 Td (Resposta: alternativa b\)) Tj ET
+BT /F2 15 Tf 48.00 442.89 Td (Questao 5) Tj ET
+BT /F3 9 Tf 48.00 421.89 Td (\(x - 1\)/2 = \(y + 3\)/4 = \(z - 2\)/\(-2\) = t) Tj ET
+BT /F3 9 Tf 48.00 409.89 Td (t = \(x - 1\)/2) Tj ET
+BT /F3 9 Tf 48.00 397.89 Td (y + 3 = 4t = 4\(\(x - 1\)/2\) = 2x - 2) Tj ET
+BT /F3 9 Tf 48.00 385.89 Td (y = 2x - 5) Tj ET
+BT /F3 9 Tf 48.00 373.89 Td (z - 2 = -2t = -2\(\(x - 1\)/2\) = -x + 1) Tj ET
+BT /F3 9 Tf 48.00 361.89 Td (z = -x + 3) Tj ET
+BT /F3 9 Tf 48.00 349.89 Td (Resposta: alternativa a\)) Tj ET
+BT /F2 15 Tf 48.00 329.89 Td (Questao 6) Tj ET
+BT /F3 9 Tf 48.00 308.89 Td (v1 . v2 = \(1, 1, 0\) . \(1, 0, 0\) = 1) Tj ET
+BT /F3 9 Tf 48.00 296.89 Td (|v1| = raiz\(2\), |v2| = 1) Tj ET
+BT /F3 9 Tf 48.00 284.89 Td (cos\(theta\) = 1 / raiz\(2\)) Tj ET
+BT /F3 9 Tf 48.00 272.89 Td (theta = 45 graus = pi/4 rad) Tj ET
+BT /F3 9 Tf 48.00 260.89 Td (Resposta: alternativa c\)) Tj ET
+BT /F2 15 Tf 48.00 240.89 Td (Questao 7) Tj ET
+BT /F3 9 Tf 48.00 219.89 Td (v1 . v2 = 0) Tj ET
+BT /F3 9 Tf 48.00 207.89 Td (\(-3, m, 4\) . \(2, 1, 1\) = 0) Tj ET
+BT /F3 9 Tf 48.00 195.89 Td (-6 + m + 4 = 0) Tj ET
+BT /F3 9 Tf 48.00 183.89 Td (m - 2 = 0) Tj ET
+BT /F3 9 Tf 48.00 171.89 Td (m = 2) Tj ET
+BT /F3 9 Tf 48.00 159.89 Td (Resposta: alternativa b\)) Tj ET
+BT /F2 15 Tf 48.00 139.89 Td (Questao 8) Tj ET
+BT /F3 9 Tf 48.00 118.89 Td (P = A + t v) Tj ET
+BT /F3 9 Tf 48.00 106.89 Td (t pertence aos reais e multiplica o vetor diretor v.) Tj ET
+BT /F3 9 Tf 48.00 94.89 Td (Resposta: alternativa b\)) Tj ET
+BT /F1 8 Tf 48.00 30.00 Td (Emilly Thais da Costa - pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 652 >>
+stream
+BT /F2 15 Tf 48.00 787.89 Td (Questao 9) Tj ET
+BT /F3 9 Tf 48.00 766.89 Td (x = t) Tj ET
+BT /F3 9 Tf 48.00 754.89 Td (y = -2t + 5) Tj ET
+BT /F3 9 Tf 48.00 742.89 Td (z = 4t - 1) Tj ET
+BT /F3 9 Tf 48.00 730.89 Td (v = \(1, -2, 4\)) Tj ET
+BT /F3 9 Tf 48.00 718.89 Td (Resposta: alternativa c\)) Tj ET
+BT /F2 15 Tf 48.00 698.89 Td (Questao 10) Tj ET
+BT /F3 9 Tf 48.00 677.89 Td (\(x - 5\)/\(-4\) = y/2 = z + 3) Tj ET
+BT /F3 9 Tf 48.00 665.89 Td (z + 3 = \(z + 3\)/1) Tj ET
+BT /F3 9 Tf 48.00 653.89 Td (v = \(-4, 2, 1\)) Tj ET
+BT /F3 9 Tf 48.00 641.89 Td (Resposta: alternativa c\)) Tj ET
+BT /F1 8 Tf 48.00 30.00 Td (Emilly Thais da Costa - pagina 2) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000224 00000 n 
+0000000326 00000 n 
+0000000421 00000 n 
+0000003379 00000 n 
+0000003531 00000 n 
+0000004234 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+4386
+%%EOF

@@ -1,0 +1,85 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 2996 >>
+stream
+BT /F2 20 Tf 48.00 787.89 Td (Lista 03 - Resolucao) Tj ET
+BT /F1 10 Tf 48.00 759.89 Td (Aluna: Emilly Thais da Costa) Tj ET
+BT /F2 15 Tf 48.00 738.89 Td (Questao 1) Tj ET
+BT /F3 9 Tf 48.00 717.89 Td (A = \(2, -1, 3\), u = \(1, 2, -1\), v = \(-2, 1, 3\)) Tj ET
+BT /F3 9 Tf 48.00 705.89 Td (\(x, y, z\) = \(2, -1, 3\) + h\(1, 2, -1\) + t\(-2, 1, 3\)) Tj ET
+BT /F3 9 Tf 48.00 693.89 Td (x = 2 + h - 2t) Tj ET
+BT /F3 9 Tf 48.00 681.89 Td (y = -1 + 2h + t) Tj ET
+BT /F3 9 Tf 48.00 669.89 Td (z = 3 - h + 3t) Tj ET
+BT /F2 15 Tf 48.00 649.89 Td (Questao 2) Tj ET
+BT /F3 9 Tf 48.00 628.89 Td (P = \(-1, 4, 2\), n = \(3, 2, -1\)) Tj ET
+BT /F3 9 Tf 48.00 616.89 Td (3\(x - \(-1\)\) + 2\(y - 4\) - \(z - 2\) = 0) Tj ET
+BT /F3 9 Tf 48.00 604.89 Td (3\(x + 1\) + 2\(y - 4\) - z + 2 = 0) Tj ET
+BT /F3 9 Tf 48.00 592.89 Td (3x + 3 + 2y - 8 - z + 2 = 0) Tj ET
+BT /F3 9 Tf 48.00 580.89 Td (3x + 2y - z - 3 = 0) Tj ET
+BT /F2 15 Tf 48.00 560.89 Td (Questao 3) Tj ET
+BT /F1 10 Tf 48.00 539.89 Td (1\)) Tj ET
+BT /F3 9 Tf 48.00 526.89 Td (P = \(2, -1, 1\) + h\(1, 2, 0\) + t\(-1, 1, 3\)) Tj ET
+BT /F3 9 Tf 48.00 514.89 Td (x = 2 + h - t) Tj ET
+BT /F3 9 Tf 48.00 502.89 Td (y = -1 + 2h + t) Tj ET
+BT /F3 9 Tf 48.00 490.89 Td (z = 1 + 3t) Tj ET
+BT /F1 10 Tf 48.00 470.89 Td (2\)) Tj ET
+BT /F3 9 Tf 48.00 457.89 Td (u = \(1, 2, 0\), v = \(-1, 1, 3\)) Tj ET
+BT /F3 9 Tf 48.00 445.89 Td (u x v = \(2 . 3 - 0 . 1, 0 . \(-1\) - 1 . 3, 1 . 1 - 2 . \(-1\)\)) Tj ET
+BT /F3 9 Tf 48.00 433.89 Td (u x v = \(6, -3, 3\) = 3\(2, -1, 1\)) Tj ET
+BT /F3 9 Tf 48.00 421.89 Td (n = \(2, -1, 1\)) Tj ET
+BT /F3 9 Tf 48.00 409.89 Td (2\(x - 2\) - \(y + 1\) + \(z - 1\) = 0) Tj ET
+BT /F3 9 Tf 48.00 397.89 Td (2x - 4 - y - 1 + z - 1 = 0) Tj ET
+BT /F3 9 Tf 48.00 385.89 Td (2x - y + z - 6 = 0) Tj ET
+BT /F2 15 Tf 48.00 365.89 Td (Questao 4) Tj ET
+BT /F3 9 Tf 48.00 344.89 Td (AB = B - A = \(0 - 2, 3 - 1, 1 - 0\) = \(-2, 2, 1\)) Tj ET
+BT /F3 9 Tf 48.00 332.89 Td (AC = C - A = \(1 - 2, -1 - 1, 4 - 0\) = \(-1, -2, 4\)) Tj ET
+BT /F3 9 Tf 48.00 320.89 Td (AB x AC = \(2 . 4 - 1 . \(-2\), 1 . \(-1\) - \(-2\) . 4, \(-2\) . \(-2\) - 2 . \(-1\)\)) Tj ET
+BT /F3 9 Tf 48.00 308.89 Td (AB x AC = \(10, 7, 6\)) Tj ET
+BT /F3 9 Tf 48.00 296.89 Td (10\(x - 2\) + 7\(y - 1\) + 6\(z - 0\) = 0) Tj ET
+BT /F3 9 Tf 48.00 284.89 Td (10x - 20 + 7y - 7 + 6z = 0) Tj ET
+BT /F3 9 Tf 48.00 272.89 Td (10x + 7y + 6z - 27 = 0) Tj ET
+BT /F3 9 Tf 48.00 260.89 Td (\(x, y, z\) = \(2, 1, 0\) + h\(-2, 2, 1\) + t\(-1, -2, 4\)) Tj ET
+BT /F2 15 Tf 48.00 240.89 Td (Questao 5) Tj ET
+BT /F3 9 Tf 48.00 219.89 Td (n1 = \(2, -1, 1\), n2 = \(1, 2, -2\)) Tj ET
+BT /F3 9 Tf 48.00 207.89 Td (n1 . n2 = 2 . 1 + \(-1\) . 2 + 1 . \(-2\) = -2) Tj ET
+BT /F3 9 Tf 48.00 195.89 Td (|n1 . n2| = 2) Tj ET
+BT /F3 9 Tf 48.00 183.89 Td (|n1| = raiz\(6\), |n2| = 3) Tj ET
+BT /F3 9 Tf 48.00 171.89 Td (cos\(theta\) = 2 / \(3 raiz\(6\)\) ~= 0,2722) Tj ET
+BT /F3 9 Tf 48.00 159.89 Td (theta = arccos\(0,2722\) ~= 74,21 graus) Tj ET
+BT /F1 8 Tf 48.00 30.00 Td (Emilly Thais da Costa - pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000121 00000 n 
+0000000218 00000 n 
+0000000320 00000 n 
+0000000415 00000 n 
+0000003463 00000 n 
+trailer
+<< /Size 8 /Root 1 0 R >>
+startxref
+3615
+%%EOF

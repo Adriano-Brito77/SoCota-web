@@ -8,13 +8,12 @@ LaTeX, Pandoc ou bibliotecas externas.
 
 from __future__ import annotations
 
-import math
 import textwrap
 from pathlib import Path
 
 
 OUTPUT_DIR = Path(__file__).resolve().parent
-STUDENT = "EMILLY Thais da Costa"
+STUDENT = "Emilly Thais da Costa"
 
 
 def pdf_literal(text: str) -> bytes:
@@ -926,11 +925,254 @@ Resposta:
     O angulo agudo entre os planos e aproximadamente 74,21 graus.
 """
 
+# Versoes enxutas solicitadas: sem capa, apenas nome da aluna, calculos e respostas.
+def lista_01() -> str:
+    return f"""
+# Lista 01 - Resolucao
+Aluna: {STUDENT}
+
+## Exercicio 1
+a)
+    AB = B - A = (3 - 1, -1 - 2, 4 - (-1)) = (2, -3, 5)
+    BC = C - B = (-2 - 3, 0 - (-1), 2 - 4) = (-5, 1, -2)
+    CA = A - C = (1 - (-2), 2 - 0, -1 - 2) = (3, 2, -3)
+
+b)
+    AB + BC + CA = (2, -3, 5) + (-5, 1, -2) + (3, 2, -3)
+    AB + BC + CA = (0, 0, 0)
+
+c)
+    Resposta: percurso fechado A -> B -> C -> A; deslocamento resultante nulo.
+
+## Exercicio 2
+a)
+    PQ = 2v = 2(-1, 3, 2) = (-2, 6, 4)
+    Q = P + PQ = (2, -1, 3) + (-2, 6, 4) = (0, 5, 7)
+
+b)
+    QP = P - Q = (2 - 0, -1 - 5, 3 - 7) = (2, -6, -4)
+    |QP| = raiz(2^2 + (-6)^2 + (-4)^2) = raiz(56) = 2 raiz(14)
+
+## Exercicio 3
+a)
+    u . v = (2, m, -3) . (1, 4, 2)
+    u . v = 2 . 1 + m . 4 + (-3) . 2 = 4m - 4
+
+b)
+    4m - 4 = 0
+    4m = 4
+    m = 1
+
+## Exercicio 4
+a)
+    |a| = raiz(2^2 + (-6)^2 + 8^2) = raiz(104) = 2 raiz(26)
+    |b| = raiz(7^2 + 1^2 + 4^2) = raiz(66)
+
+b)
+    a . b = 2 . 7 + (-6) . 1 + 8 . 4 = 14 - 6 + 32 = 40
+
+c)
+    cos(theta) = (a . b) / (|a| |b|)
+    cos(theta) = 40 / (raiz(104) raiz(66)) = 10 / raiz(429)
+    theta = arccos(10 / raiz(429)) ~= 61,13 graus
+    theta ~= 1,067 rad
+
+## Exercicio 5
+a)
+    u x v = | i  j  k |
+            | 1  2  0 |
+            | 2  0  1 |
+    u x v = (2 . 1 - 0 . 0, -(1 . 1 - 0 . 2), 1 . 0 - 2 . 2)
+    u x v = (2, -1, -4)
+
+b)
+    A_paralelogramo = |u x v| = raiz(2^2 + (-1)^2 + (-4)^2) = raiz(21)
+
+c)
+    A_triangulo = raiz(21) / 2
+
+## Exercicio 6
+a)
+    a x b = (1 . 1 - 0 . 1, 0 . 0 - 1 . 1, 1 . 1 - 1 . 0)
+    a x b = (1, -1, 1)
+    |a x b| = raiz(1^2 + (-1)^2 + 1^2) = raiz(3)
+
+b)
+    |a| = raiz(2), |b| = raiz(2)
+    sen(theta) = |a x b| / (|a| |b|)
+    sen(theta) = raiz(3) / (raiz(2) raiz(2)) = raiz(3) / 2
+
+c)
+    h = area / base = raiz(3) / raiz(2) = raiz(6) / 2
+
+## Exercicio 7
+a)
+    u x v = (1 . 1 - 0 . 2, 0 . 0 - 1 . 1, 1 . 2 - 1 . 0)
+    u x v = (1, -1, 2)
+    [u, v, w] = (u x v) . w = (1, -1, 2) . (1, 0, 3)
+    [u, v, w] = 1 + 0 + 6 = 7
+
+b)
+    V_paralelepipedo = |7| = 7
+
+c)
+    V_prisma_triangular = 7 / 2
+    V_tetraedro = 7 / 6
+
+d)
+    v x w = (2 . 3 - 1 . 0, 1 . 1 - 0 . 3, 0 . 0 - 2 . 1)
+    v x w = (6, 1, -2)
+    |v x w| = raiz(6^2 + 1^2 + (-2)^2) = raiz(41)
+    h = V / |v x w| = 7 / raiz(41)
+
+## Exercicio 8
+a)
+    n = u x v = (0 . 0 - 1 . 1, 1 . 1 - 1 . 0, 1 . 1 - 0 . 1)
+    n = (-1, 1, 1)
+
+b)
+    d . n = 1(-1) + 2(1) + 1(1) = 2
+    |d| = raiz(6), |n| = raiz(3)
+    cos(alfa) = 2 / (raiz(6) raiz(3)) = raiz(2) / 3
+    alfa ~= 61,87 graus
+
+c)
+    e . n = 2(-1) + 1(1) + 1(1) = 0
+    alfa = 90 graus
+"""
+
+
+def lista_02() -> str:
+    return f"""
+# Lista 02 - Resolucao
+Aluna: {STUDENT}
+
+## Questao 1
+    (x, y, z) = A + t v
+    (x, y, z) = (5, 0, -3) + t(-2, 4, 1)
+    Resposta: alternativa d)
+
+## Questao 2
+    x = -1 + 5t, y = 2 - 3t, z = 4t
+    t = 0 -> P = (-1, 2, 0)
+    v = (5, -3, 4)
+    Resposta: alternativa b)
+
+## Questao 3
+    AB = B - A = (0 - 2, 4 - (-1), 5 - 3) = (-2, 5, 2)
+    (x, y, z) = (2, -1, 3) + t(-2, 5, 2)
+    x = 2 - 2t, y = -1 + 5t, z = 3 + 2t
+    Resposta: alternativa a)
+
+## Questao 4
+    P = (-3, 1, 6), v = (4, 2, -5)
+    (x - (-3))/4 = (y - 1)/2 = (z - 6)/(-5)
+    (x + 3)/4 = (y - 1)/2 = (z - 6)/(-5)
+    Resposta: alternativa b)
+
+## Questao 5
+    (x - 1)/2 = (y + 3)/4 = (z - 2)/(-2) = t
+    t = (x - 1)/2
+    y + 3 = 4t = 4((x - 1)/2) = 2x - 2
+    y = 2x - 5
+    z - 2 = -2t = -2((x - 1)/2) = -x + 1
+    z = -x + 3
+    Resposta: alternativa a)
+
+## Questao 6
+    v1 . v2 = (1, 1, 0) . (1, 0, 0) = 1
+    |v1| = raiz(2), |v2| = 1
+    cos(theta) = 1 / raiz(2)
+    theta = 45 graus = pi/4 rad
+    Resposta: alternativa c)
+
+## Questao 7
+    v1 . v2 = 0
+    (-3, m, 4) . (2, 1, 1) = 0
+    -6 + m + 4 = 0
+    m - 2 = 0
+    m = 2
+    Resposta: alternativa b)
+
+## Questao 8
+    P = A + t v
+    t pertence aos reais e multiplica o vetor diretor v.
+    Resposta: alternativa b)
+
+## Questao 9
+    x = t
+    y = -2t + 5
+    z = 4t - 1
+    v = (1, -2, 4)
+    Resposta: alternativa c)
+
+## Questao 10
+    (x - 5)/(-4) = y/2 = z + 3
+    z + 3 = (z + 3)/1
+    v = (-4, 2, 1)
+    Resposta: alternativa c)
+"""
+
+
+def lista_03() -> str:
+    return f"""
+# Lista 03 - Resolucao
+Aluna: {STUDENT}
+
+## Questao 1
+    A = (2, -1, 3), u = (1, 2, -1), v = (-2, 1, 3)
+    (x, y, z) = (2, -1, 3) + h(1, 2, -1) + t(-2, 1, 3)
+    x = 2 + h - 2t
+    y = -1 + 2h + t
+    z = 3 - h + 3t
+
+## Questao 2
+    P = (-1, 4, 2), n = (3, 2, -1)
+    3(x - (-1)) + 2(y - 4) - (z - 2) = 0
+    3(x + 1) + 2(y - 4) - z + 2 = 0
+    3x + 3 + 2y - 8 - z + 2 = 0
+    3x + 2y - z - 3 = 0
+
+## Questao 3
+1)
+    P = (2, -1, 1) + h(1, 2, 0) + t(-1, 1, 3)
+    x = 2 + h - t
+    y = -1 + 2h + t
+    z = 1 + 3t
+
+2)
+    u = (1, 2, 0), v = (-1, 1, 3)
+    u x v = (2 . 3 - 0 . 1, 0 . (-1) - 1 . 3, 1 . 1 - 2 . (-1))
+    u x v = (6, -3, 3) = 3(2, -1, 1)
+    n = (2, -1, 1)
+    2(x - 2) - (y + 1) + (z - 1) = 0
+    2x - 4 - y - 1 + z - 1 = 0
+    2x - y + z - 6 = 0
+
+## Questao 4
+    AB = B - A = (0 - 2, 3 - 1, 1 - 0) = (-2, 2, 1)
+    AC = C - A = (1 - 2, -1 - 1, 4 - 0) = (-1, -2, 4)
+    AB x AC = (2 . 4 - 1 . (-2), 1 . (-1) - (-2) . 4, (-2) . (-2) - 2 . (-1))
+    AB x AC = (10, 7, 6)
+    10(x - 2) + 7(y - 1) + 6(z - 0) = 0
+    10x - 20 + 7y - 7 + 6z = 0
+    10x + 7y + 6z - 27 = 0
+    (x, y, z) = (2, 1, 0) + h(-2, 2, 1) + t(-1, -2, 4)
+
+## Questao 5
+    n1 = (2, -1, 1), n2 = (1, 2, -2)
+    n1 . n2 = 2 . 1 + (-1) . 2 + 1 . (-2) = -2
+    |n1 . n2| = 2
+    |n1| = raiz(6), |n2| = 3
+    cos(theta) = 2 / (3 raiz(6)) ~= 0,2722
+    theta = arccos(0,2722) ~= 74,21 graus
+"""
+
 
 DOCUMENTS = {
-    "Lista_01_Resolucao_EMILLY_Thais_da_Costa.pdf": lista_01(),
-    "Lista_02_Resolucao_EMILLY_Thais_da_Costa.pdf": lista_02(),
-    "Lista_03_Resolucao_EMILLY_Thais_da_Costa.pdf": lista_03(),
+    "Lista_01_Resolucao_Emilly_Thais_da_Costa.pdf": lista_01(),
+    "Lista_02_Resolucao_Emilly_Thais_da_Costa.pdf": lista_02(),
+    "Lista_03_Resolucao_Emilly_Thais_da_Costa.pdf": lista_03(),
 }
 
 
