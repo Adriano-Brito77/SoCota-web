@@ -1,0 +1,200 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Length 626 >>
+stream
+BT /F2 20 Tf 48.00 787.89 Td (Apostila de Resolucao - Lista 03) Tj ET
+BT /F2 15 Tf 48.00 759.89 Td (Algebra Linear e Geometria Analitica) Tj ET
+BT /F1 10 Tf 48.00 738.89 Td (Aluno\(a\): EMILLY Thais da Costa) Tj ET
+BT /F1 10 Tf 48.00 717.89 Td (Tema: planos - equacao vetorial, equacoes parametricas, equacao geral e angulo entre planos.) Tj ET
+BT /F1 10 Tf 48.00 696.89 Td (O objetivo desta apostila e mostrar como transformar pontos, vetores diretores e vetores) Tj ET
+BT /F1 10 Tf 48.00 683.89 Td (normais nas diferentes formas de equacao do plano.) Tj ET
+BT /F1 8 Tf 48.00 30.00 Td (EMILLY Thais da Costa - pagina 1) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 3399 >>
+stream
+BT /F2 15 Tf 48.00 779.89 Td (Lembretes de formulas) Tj ET
+BT /F1 10 Tf 48.00 758.89 Td (  - Equacao vetorial do plano: P = A + h u + t v, com h e t reais.) Tj ET
+BT /F1 10 Tf 48.00 745.89 Td (  - Equacoes parametricas: x, y e z sao escritos separadamente em funcao de h e t.) Tj ET
+BT /F1 10 Tf 48.00 732.89 Td (  - Equacao geral do plano: ax + by + cz + d = 0, em que n = \(a, b, c\) e um vetor normal.) Tj ET
+BT /F1 10 Tf 48.00 719.89 Td (  - Se o plano e gerado por dois vetores u e v, um vetor normal e n = u x v.) Tj ET
+BT /F1 10 Tf 48.00 706.89 Td (  - Angulo entre planos: e o angulo entre seus vetores normais. Para o angulo agudo, usamos) Tj ET
+BT /F1 10 Tf 48.00 693.89 Td (  valor absoluto no produto escalar.) Tj ET
+BT /F2 15 Tf 48.00 672.89 Td (Questao 1 - Equacao vetorial e parametrica do plano) Tj ET
+BT /F1 10 Tf 48.00 651.89 Td (Dados:) Tj ET
+BT /F3 9 Tf 48.00 638.89 Td (A = \(2, -1, 3\)) Tj ET
+BT /F3 9 Tf 48.00 626.89 Td (u = \(1, 2, -1\)) Tj ET
+BT /F3 9 Tf 48.00 614.89 Td (v = \(-2, 1, 3\)) Tj ET
+BT /F1 10 Tf 48.00 594.89 Td (Como u e v sao vetores nao paralelos, eles geram o plano. A equacao vetorial e:) Tj ET
+BT /F3 9 Tf 48.00 581.89 Td (P = A + h u + t v) Tj ET
+BT /F1 10 Tf 48.00 561.89 Td (Substituindo:) Tj ET
+BT /F3 9 Tf 48.00 548.89 Td (P = \(2, -1, 3\) + h\(1, 2, -1\) + t\(-2, 1, 3\)) Tj ET
+BT /F1 10 Tf 48.00 528.89 Td (Portanto:) Tj ET
+BT /F3 9 Tf 48.00 515.89 Td (\(x, y, z\) = \(2, -1, 3\) + h\(1, 2, -1\) + t\(-2, 1, 3\)) Tj ET
+BT /F1 10 Tf 48.00 495.89 Td (Agora separamos as coordenadas para obter as equacoes parametricas:) Tj ET
+BT /F3 9 Tf 48.00 482.89 Td (x = 2 + h - 2t) Tj ET
+BT /F3 9 Tf 48.00 470.89 Td (y = -1 + 2h + t) Tj ET
+BT /F3 9 Tf 48.00 458.89 Td (z = 3 - h + 3t) Tj ET
+BT /F1 10 Tf 48.00 438.89 Td (Resposta:) Tj ET
+BT /F3 9 Tf 48.00 425.89 Td (Equacao vetorial: \(x, y, z\) = \(2, -1, 3\) + h\(1, 2, -1\) + t\(-2, 1, 3\)) Tj ET
+BT /F3 9 Tf 48.00 413.89 Td (Equacoes parametricas: x = 2 + h - 2t, y = -1 + 2h + t, z = 3 - h + 3t) Tj ET
+BT /F2 15 Tf 48.00 393.89 Td (Questao 2 - Equacao geral do plano) Tj ET
+BT /F1 10 Tf 48.00 372.89 Td (Dados:) Tj ET
+BT /F3 9 Tf 48.00 359.89 Td (P = \(-1, 4, 2\)) Tj ET
+BT /F3 9 Tf 48.00 347.89 Td (n = \(3, 2, -1\)) Tj ET
+BT /F1 10 Tf 48.00 327.89 Td (Se n = \(a, b, c\) e normal ao plano, usamos:) Tj ET
+BT /F3 9 Tf 48.00 314.89 Td (a\(x - x0\) + b\(y - y0\) + c\(z - z0\) = 0) Tj ET
+BT /F1 10 Tf 48.00 294.89 Td (Substituindo o ponto P e o vetor normal:) Tj ET
+BT /F3 9 Tf 48.00 281.89 Td (3\(x - \(-1\)\) + 2\(y - 4\) + \(-1\)\(z - 2\) = 0) Tj ET
+BT /F1 10 Tf 48.00 261.89 Td (Simplificando:) Tj ET
+BT /F3 9 Tf 48.00 248.89 Td (3\(x + 1\) + 2\(y - 4\) - \(z - 2\) = 0) Tj ET
+BT /F3 9 Tf 48.00 236.89 Td (3x + 3 + 2y - 8 - z + 2 = 0) Tj ET
+BT /F3 9 Tf 48.00 224.89 Td (3x + 2y - z - 3 = 0) Tj ET
+BT /F1 10 Tf 48.00 204.89 Td (Resposta:) Tj ET
+BT /F3 9 Tf 48.00 191.89 Td (3x + 2y - z - 3 = 0) Tj ET
+BT /F2 15 Tf 48.00 171.89 Td (Questao 3 - Equacao vetorial do plano) Tj ET
+BT /F1 10 Tf 48.00 150.89 Td (Plano:) Tj ET
+BT /F3 9 Tf 48.00 137.89 Td (P = \(2, -1, 1\) + h\(1, 2, 0\) + t\(-1, 1, 3\)) Tj ET
+BT /F1 10 Tf 48.00 117.89 Td (Item 1\) Equacoes parametricas.) Tj ET
+BT /F1 10 Tf 48.00 96.89 Td (Separamos cada coordenada:) Tj ET
+BT /F3 9 Tf 48.00 83.89 Td (x = 2 + h - t) Tj ET
+BT /F3 9 Tf 48.00 71.89 Td (y = -1 + 2h + t) Tj ET
+BT /F1 8 Tf 48.00 30.00 Td (EMILLY Thais da Costa - pagina 2) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 3060 >>
+stream
+BT /F3 9 Tf 48.00 787.89 Td (z = 1 + 3t) Tj ET
+BT /F1 10 Tf 48.00 767.89 Td (Resposta do item 1:) Tj ET
+BT /F3 9 Tf 48.00 754.89 Td (x = 2 + h - t, y = -1 + 2h + t, z = 1 + 3t) Tj ET
+BT /F1 10 Tf 48.00 734.89 Td (Item 2\) Equacao geral do plano.) Tj ET
+BT /F1 10 Tf 48.00 713.89 Td (Os vetores geradores sao:) Tj ET
+BT /F3 9 Tf 48.00 700.89 Td (u = \(1, 2, 0\)) Tj ET
+BT /F3 9 Tf 48.00 688.89 Td (v = \(-1, 1, 3\)) Tj ET
+BT /F1 10 Tf 48.00 668.89 Td (Um vetor normal e:) Tj ET
+BT /F3 9 Tf 48.00 655.89 Td (n = u x v) Tj ET
+BT /F1 10 Tf 48.00 635.89 Td (Calculando:) Tj ET
+BT /F3 9 Tf 48.00 622.89 Td (u x v = \(2 . 3 - 0 . 1, 0 . \(-1\) - 1 . 3, 1 . 1 - 2 . \(-1\)\)) Tj ET
+BT /F3 9 Tf 48.00 610.89 Td (u x v = \(6, -3, 3\)) Tj ET
+BT /F1 10 Tf 48.00 590.89 Td (Podemos simplificar dividindo por 3:) Tj ET
+BT /F3 9 Tf 48.00 577.89 Td (n = \(2, -1, 1\)) Tj ET
+BT /F1 10 Tf 48.00 557.89 Td (Usando o ponto A = \(2, -1, 1\):) Tj ET
+BT /F3 9 Tf 48.00 544.89 Td (2\(x - 2\) - 1\(y - \(-1\)\) + 1\(z - 1\) = 0) Tj ET
+BT /F1 10 Tf 48.00 524.89 Td (Simplificando:) Tj ET
+BT /F3 9 Tf 48.00 511.89 Td (2\(x - 2\) - \(y + 1\) + \(z - 1\) = 0) Tj ET
+BT /F3 9 Tf 48.00 499.89 Td (2x - 4 - y - 1 + z - 1 = 0) Tj ET
+BT /F3 9 Tf 48.00 487.89 Td (2x - y + z - 6 = 0) Tj ET
+BT /F1 10 Tf 48.00 467.89 Td (Resposta do item 2:) Tj ET
+BT /F3 9 Tf 48.00 454.89 Td (2x - y + z - 6 = 0) Tj ET
+BT /F2 15 Tf 48.00 434.89 Td (Questao 4 - Plano determinado por tres pontos) Tj ET
+BT /F1 10 Tf 48.00 413.89 Td (Dados:) Tj ET
+BT /F3 9 Tf 48.00 400.89 Td (A = \(2, 1, 0\)) Tj ET
+BT /F3 9 Tf 48.00 388.89 Td (B = \(0, 3, 1\)) Tj ET
+BT /F3 9 Tf 48.00 376.89 Td (C = \(1, -1, 4\)) Tj ET
+BT /F1 10 Tf 48.00 356.89 Td (Primeiro construimos dois vetores pertencentes ao plano:) Tj ET
+BT /F3 9 Tf 48.00 343.89 Td (AB = B - A = \(0 - 2, 3 - 1, 1 - 0\)) Tj ET
+BT /F3 9 Tf 48.00 331.89 Td (AB = \(-2, 2, 1\)) Tj ET
+BT /F3 9 Tf 48.00 311.89 Td (AC = C - A = \(1 - 2, -1 - 1, 4 - 0\)) Tj ET
+BT /F3 9 Tf 48.00 299.89 Td (AC = \(-1, -2, 4\)) Tj ET
+BT /F1 10 Tf 48.00 279.89 Td (Um vetor normal ao plano e:) Tj ET
+BT /F3 9 Tf 48.00 266.89 Td (n = AB x AC) Tj ET
+BT /F1 10 Tf 48.00 246.89 Td (Calculando:) Tj ET
+BT /F3 9 Tf 48.00 233.89 Td (AB x AC = \(2 . 4 - 1 . \(-2\), 1 . \(-1\) - \(-2\) . 4, \(-2\) . \(-2\) - 2 . \(-1\)\)) Tj ET
+BT /F3 9 Tf 48.00 221.89 Td (AB x AC = \(10, 7, 6\)) Tj ET
+BT /F1 10 Tf 48.00 201.89 Td (Logo, n = \(10, 7, 6\). Usando o ponto A:) Tj ET
+BT /F3 9 Tf 48.00 188.89 Td (10\(x - 2\) + 7\(y - 1\) + 6\(z - 0\) = 0) Tj ET
+BT /F1 10 Tf 48.00 168.89 Td (Simplificando:) Tj ET
+BT /F3 9 Tf 48.00 155.89 Td (10x - 20 + 7y - 7 + 6z = 0) Tj ET
+BT /F3 9 Tf 48.00 143.89 Td (10x + 7y + 6z - 27 = 0) Tj ET
+BT /F1 10 Tf 48.00 123.89 Td (Resposta - equacao geral:) Tj ET
+BT /F3 9 Tf 48.00 110.89 Td (10x + 7y + 6z - 27 = 0) Tj ET
+BT /F1 10 Tf 48.00 90.89 Td (Para a equacao vetorial, usamos o ponto A e os vetores AB e AC:) Tj ET
+BT /F3 9 Tf 48.00 77.89 Td (\(x, y, z\) = \(2, 1, 0\) + h\(-2, 2, 1\) + t\(-1, -2, 4\)) Tj ET
+BT /F1 8 Tf 48.00 30.00 Td (EMILLY Thais da Costa - pagina 3) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 1922 >>
+stream
+BT /F1 10 Tf 48.00 787.89 Td (Resposta - equacao vetorial:) Tj ET
+BT /F3 9 Tf 48.00 774.89 Td (\(x, y, z\) = \(2, 1, 0\) + h\(-2, 2, 1\) + t\(-1, -2, 4\)) Tj ET
+BT /F2 15 Tf 48.00 754.89 Td (Questao 5 - Angulo entre planos) Tj ET
+BT /F1 10 Tf 48.00 733.89 Td (Planos:) Tj ET
+BT /F3 9 Tf 48.00 720.89 Td (pi1: 2x - y + z + 3 = 0) Tj ET
+BT /F3 9 Tf 48.00 708.89 Td (pi2: x + 2y - 2z - 1 = 0) Tj ET
+BT /F1 10 Tf 48.00 688.89 Td (Os vetores normais sao formados pelos coeficientes de x, y e z:) Tj ET
+BT /F3 9 Tf 48.00 675.89 Td (n1 = \(2, -1, 1\)) Tj ET
+BT /F3 9 Tf 48.00 663.89 Td (n2 = \(1, 2, -2\)) Tj ET
+BT /F1 10 Tf 48.00 643.89 Td (O angulo entre planos e o angulo entre seus vetores normais. Para o angulo agudo:) Tj ET
+BT /F3 9 Tf 48.00 630.89 Td (cos\(theta\) = |n1 . n2| / \(|n1| |n2|\)) Tj ET
+BT /F1 10 Tf 48.00 610.89 Td (Produto escalar:) Tj ET
+BT /F3 9 Tf 48.00 597.89 Td (n1 . n2 = 2 . 1 + \(-1\) . 2 + 1 . \(-2\)) Tj ET
+BT /F3 9 Tf 48.00 585.89 Td (n1 . n2 = 2 - 2 - 2) Tj ET
+BT /F3 9 Tf 48.00 573.89 Td (n1 . n2 = -2) Tj ET
+BT /F1 10 Tf 48.00 553.89 Td (Usamos o valor absoluto:) Tj ET
+BT /F3 9 Tf 48.00 540.89 Td (|n1 . n2| = 2) Tj ET
+BT /F1 10 Tf 48.00 520.89 Td (Modulos:) Tj ET
+BT /F3 9 Tf 48.00 507.89 Td (|n1| = raiz\(2^2 + \(-1\)^2 + 1^2\) = raiz\(6\)) Tj ET
+BT /F3 9 Tf 48.00 495.89 Td (|n2| = raiz\(1^2 + 2^2 + \(-2\)^2\) = raiz\(9\) = 3) Tj ET
+BT /F1 10 Tf 48.00 475.89 Td (Substituindo:) Tj ET
+BT /F3 9 Tf 48.00 462.89 Td (cos\(theta\) = 2 / \(3 raiz\(6\)\)) Tj ET
+BT /F3 9 Tf 48.00 450.89 Td (cos\(theta\) ~= 0,2722) Tj ET
+BT /F1 10 Tf 48.00 430.89 Td (Logo:) Tj ET
+BT /F3 9 Tf 48.00 417.89 Td (theta = arccos\(0,2722\)) Tj ET
+BT /F3 9 Tf 48.00 405.89 Td (theta ~= 74,21 graus) Tj ET
+BT /F1 10 Tf 48.00 385.89 Td (Resposta:) Tj ET
+BT /F3 9 Tf 48.00 372.89 Td (O angulo agudo entre os planos e aproximadamente 74,21 graus.) Tj ET
+BT /F1 8 Tf 48.00 30.00 Td (EMILLY Thais da Costa - pagina 4) Tj ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 12 0 R >>
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000141 00000 n 
+0000000238 00000 n 
+0000000340 00000 n 
+0000000435 00000 n 
+0000001112 00000 n 
+0000001264 00000 n 
+0000004715 00000 n 
+0000004867 00000 n 
+0000007980 00000 n 
+0000008134 00000 n 
+0000010109 00000 n 
+trailer
+<< /Size 14 /Root 1 0 R >>
+startxref
+10263
+%%EOF
